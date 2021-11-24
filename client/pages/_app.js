@@ -1,10 +1,10 @@
 import "../styles/globals.css";
-import { ConsentCookieProvider } from "../context/context";
+import { DataCityProvider } from "../context/context";
 function MyApp({ Component, pageProps }) {
   return (
-    <ConsentCookieProvider>
+    <DataCityProvider>
       <Component {...pageProps} />
-    </ConsentCookieProvider>
+    </DataCityProvider>
   );
 }
 

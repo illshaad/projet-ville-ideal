@@ -39,19 +39,29 @@ export const Input = styled.input`
   margin-bottom: 15px;
 `;
 
+export const P = styled.p`
+  font-size: ${({ fontSize }) => fontSize || "23px"};
+  color: ${({ color }) => color || "#95A5BA"};
+  text-align: ${({ textAlign }) => textAlign || "center"};
+`;
+
+export const ContainerSelect = styled.div`
+  margin-top: 10px;
+  width: 300px;
+`;
+
 export const FlexContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
 export const Card = styled.div`
-  padding: 60px 20px;
-  width: 100%;
-  height: 600px;
+  padding: 5px 5px;
+  width: 330px;
+  height: 220px;
   background: #fff;
   border-radius: 4px;
-  box-shadow: 0px 0px 3px black;
-  text-align: center;
+  box-shadow: 0px 0px 3px #3197d4;
 `;
 
 export const Perror = styled.span`
@@ -62,8 +72,8 @@ export const Perror = styled.span`
 `;
 
 export const Form = styled.form`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  gap: 10px;
 `;

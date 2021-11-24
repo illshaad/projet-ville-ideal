@@ -1,23 +1,23 @@
 import { createContext, useContext, useState } from "react";
 
-const consentCookieContext = createContext();
+const dataCityContext = createContext();
 
-export const ConsentCookieProvider = ({ children }) => {
-  const [consentCookie, setConsentCookie] = useState(null);
+export const DataCityProvider = ({ children }) => {
+  const [city, setCity] = useState(null);
   const [display, setDisplay] = useState(false);
 
   return (
-    <consentCookieContext.Provider
+    <dataCityContext.Provider
       value={{
-        consentCookie,
-        setConsentCookie,
+        city,
+        setCity,
         display,
         setDisplay,
       }}
     >
       {children}
-    </consentCookieContext.Provider>
+    </dataCityContext.Provider>
   );
 };
 
-export const useConsentCookie = () => useContext(consentCookieContext);
+export const useDataCity = () => useContext(dataCityContext);

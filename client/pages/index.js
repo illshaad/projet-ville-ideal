@@ -1,18 +1,21 @@
+import React, { useRef } from "react";
 import Maps from "../composants/map/Maps";
 import Avis from "../composants/avis/Avis";
 import { getDataIleDeFrance } from "../service/api";
-import { useConsentCookie } from "../context/context";
-import { FlexContainer } from "../styles/global";
+import { useDataCity } from "../context/context";
+
 export default function Home({ dataIleDeFrance }) {
-  const { consentCookie, display } = useConsentCookie();
+  const { city, display } = useDataCity();
+  const avisRef = useRef(null);
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+  const executeScroll = () => scrollToRef(avisRef);
 
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>PROJET PERSO</h1>
-      <FlexContainer>
-        <Maps dataIleDeFrance={dataIleDeFrance} />
-        {consentCookie && display && <Avis consentCookie={consentCookie} />}
-      </FlexContainer>
+      <Maps dataIleDeFrance={dataIleDeFrance} executeScroll={executeScroll} />
+
+      {city && display && <Avis city={city} avisRef={avisRef} />}
     </div>
   );
 }

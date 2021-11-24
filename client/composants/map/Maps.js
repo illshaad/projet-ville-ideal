@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { PositionMaps, styledMap } from "../../styles/MapGoogle";
-import { useConsentCookie } from "../../context/context";
+import { useDataCity } from "../../context/context";
 
 const options = {
   styles: styledMap,
@@ -24,8 +24,8 @@ const options = {
   fullscreenControl: false,
 };
 
-export default function MapGoogle({ dataIleDeFrance }) {
-  const { setConsentCookie, setDisplay } = useConsentCookie();
+export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
+  const { setCity, setDisplay } = useDataCity();
 
   const mapStyles = {
     width: "800px",
@@ -33,8 +33,9 @@ export default function MapGoogle({ dataIleDeFrance }) {
   };
 
   const activeComposantAvis = (item) => {
-    setConsentCookie(item);
+    setCity(item);
     setDisplay(true);
+    executeScroll();
   };
 
   return (

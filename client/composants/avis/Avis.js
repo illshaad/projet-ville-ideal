@@ -1,16 +1,13 @@
-import { useConsentCookie } from "../../context/context";
+import { useDataCity } from "../../context/context";
 import { useForm } from "react-hook-form";
-import { Button, Form, FlexContainer, Card } from "../../styles/global";
-import { MenuItem } from "@material-ui/core";
-import { Select } from "../../ui/Select";
-
-export default function Avis({ consentCookie }) {
-  const { setDisplay } = useConsentCookie();
+import { Button, Card, Form, ContainerSelect, P } from "../../styles/global";
+import information from "./information.json";
+export default function Avis({ city, avisRef }) {
+  const { setDisplay } = useDataCity();
 
   const { handleSubmit, register } = useForm({});
 
   const onSubmit = (data) => {
-    console.log("tototoototo");
     console.log(data);
   };
 
@@ -18,44 +15,35 @@ export default function Avis({ consentCookie }) {
     setDisplay(false);
   };
 
-  const information = [
-    {
-      titre: "QualiterEnvironement",
-      value: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
-    {
-      titre: "Transports",
-      value: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
-  ];
-
   return (
-    <Card>
-      <h2>Avis</h2>
+    <div ref={avisRef}>
+      <P>Vous allez noté la ville : {city.nom} </P>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FlexContainer>
-          {information.map(
-            (e, index) =>
-              e && (
-                <>
-                  <p>{e.titre}</p>
-                  <select name={e.titre} {...register(e.titre)}>
-                    {information[index].value.map((f) => (
-                      <option value={f}>{f}</option>
-                    ))}
-                  </select>
-                </>
-              )
-          )}
-        </FlexContainer>
-
-        <button cursor="pointer " type="submit">
-          Enregistrer
-        </button>
+        {information.map((e, index) => (
+          <ContainerSelect>
+            <Card>
+              <P color="#3197d4">{e.titre}</P>
+              <ContainerSelect>
+                <P textAlign="justify" fontSize="15px">
+                  {e.info}
+                </P>
+              </ContainerSelect>
+              <select name={e.titre} {...register(e.titre)}>
+                {information[index].value.map((f) => (
+                  <option value={f}>{f}</option>
+                ))}
+              </select>
+            </Card>
+          </ContainerSelect>
+        ))}
       </Form>
+
+      <Button cursor="pointer " type="submit">
+        Enregistrer
+      </Button>
       <Button cursor="pointer" onClick={closeComponentAvis}>
         Close
       </Button>
-    </Card>
+    </div>
   );
 }
