@@ -25,15 +25,18 @@ const options = {
 };
 
 export default function MapGoogle({ dataIleDeFrance }) {
+  const { setConsentCookie, setDisplay } = useConsentCookie();
+
   const mapStyles = {
     width: "800px",
     height: "600px",
   };
-  const { setConsentCookie } = useConsentCookie();
-  const { setDisplay } = useConsentCookie();
+
   const activeComposantAvis = (item) => {
-    setConsentCookie(item), setDisplay(true);
+    setConsentCookie(item);
+    setDisplay(true);
   };
+
   return (
     <PositionMaps>
       <LoadScript googleMapsApiKey="AIzaSyC0iQDHGXaDAQ_Os9Boc6vxGrPZHcYQHzo">

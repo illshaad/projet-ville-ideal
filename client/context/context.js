@@ -5,6 +5,7 @@ const consentCookieContext = createContext();
 export const ConsentCookieProvider = ({ children }) => {
   const [consentCookie, setConsentCookie] = useState(null);
   const [display, setDisplay] = useState(false);
+
   return (
     <consentCookieContext.Provider
       value={{

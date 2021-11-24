@@ -4,8 +4,7 @@ import { getDataIleDeFrance } from "../service/api";
 import { useConsentCookie } from "../context/context";
 import { FlexContainer } from "../styles/global";
 export default function Home({ dataIleDeFrance }) {
-  const { consentCookie } = useConsentCookie();
-  const { display } = useConsentCookie();
+  const { consentCookie, display } = useConsentCookie();
 
   return (
     <div>
