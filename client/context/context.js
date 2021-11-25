@@ -5,6 +5,7 @@ const dataCityContext = createContext();
 export const DataCityProvider = ({ children }) => {
   const [city, setCity] = useState(null);
   const [display, setDisplay] = useState(false);
+  const [response, setResponse] = useState();
 
   return (
     <dataCityContext.Provider
@@ -13,6 +14,8 @@ export const DataCityProvider = ({ children }) => {
         setCity,
         display,
         setDisplay,
+        response,
+        setResponse,
       }}
     >
       {children}

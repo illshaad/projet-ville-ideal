@@ -13,8 +13,8 @@ export const ContainerMenu = styled.header`
   color: white;
 `;
 
-export const Button = styled.a`
-  background: #cd9bf6;
+export const Button = styled.button`
+  background: #3197d4;
   font-size: 15px;
   line-height: 1rem;
   border-radius: 4px;
@@ -26,11 +26,7 @@ export const Button = styled.a`
   justify-content: center;
   margin: 5px auto;
   cursor: ${({ cursor }) => cursor || null};
-`;
-
-export const CenterElement = styled.div`
-  margin-top: 10px;
-  text-align: center;
+  border: none;
 `;
 
 export const Input = styled.input`
@@ -40,7 +36,6 @@ export const Input = styled.input`
 `;
 
 export const P = styled.p`
-  font-size: ${({ fontSize }) => fontSize || "23px"};
   color: ${({ color }) => color || "#95A5BA"};
   text-align: ${({ textAlign }) => textAlign || "center"};
 `;
@@ -56,7 +51,7 @@ export const FlexContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  padding: 5px 5px;
+  padding: ${({ padding }) => padding || "5px 5px"};
   width: 330px;
   height: 220px;
   background: #fff;
@@ -66,14 +61,32 @@ export const Card = styled.div`
 
 export const Perror = styled.span`
   color: red;
-  font-size: 12px
+  font-size: 12px;
   text-align: center;
   font-weight: 800;
 `;
 
 export const Form = styled.form`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
   gap: 10px;
+  margin-left: 20px;
+`;
+
+export const Textarea = styled.textarea`
+  width: 320px;
+  height: 160px;
+  border: none;
+  background: #e8e7e8;
+  padding: 25px;
+  font-size: 15px;
+`;
+
+export const Select = styled.select`
+  width: 320px;
+  height: 30px;
+  color: grey;
+  font-size: 15px;
+  display: flex;
 `;

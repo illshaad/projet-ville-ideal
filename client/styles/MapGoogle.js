@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const PositionMaps = styled.div`
   position: relative;
   width: 100%;
-  /* margin-top: 24px; */
-  /* margin-bottom: 24px; */
 `;
 
 export const styledMap = [
