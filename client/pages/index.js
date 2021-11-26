@@ -3,8 +3,11 @@ import Maps from "../composants/map/Maps";
 import Avis from "../composants/avis/Avis";
 import { getDataIleDeFrance } from "../service/api";
 import { useDataCity } from "../context/context";
+import Modal from "../composants/modal/Modal";
+import Search from "../composants/search/Search";
 
 export default function Home({ dataIleDeFrance }) {
+  console.log(dataIleDeFrance.dataAll, "DATA");
   const { city, display, response } = useDataCity();
   const avisRef = useRef(null);
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
@@ -12,9 +15,10 @@ export default function Home({ dataIleDeFrance }) {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>PROJET PERSO</h1>s
+      <h1 style={{ textAlign: "center" }}>PROJET PERSO</h1>
+      <Search dataIleDeFrance={dataIleDeFrance} />
       <Maps dataIleDeFrance={dataIleDeFrance} executeScroll={executeScroll} />
-      {response ? <div>{response}</div> : null}
+      {response ? <Modal /> : null}
       {city && display && <Avis city={city} avisRef={avisRef} />}
     </div>
   );

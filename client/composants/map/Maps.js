@@ -1,6 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  MarkerClusterer,
+} from "@react-google-maps/api";
 import { PositionMaps, styledMap } from "../../styles/MapGoogle";
 import { useDataCity } from "../../context/context";
 
@@ -47,22 +52,25 @@ export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
           center={{ lat: 48.866667, lng: 2.333333 }}
           options={options}
         >
-          {dataIleDeFrance.dataAll &&
-            dataIleDeFrance.dataAll.map((item, index) => {
-              const lagLng = {
-                lat: item.centre.coordinates[1],
-                lng: item.centre.coordinates[0],
-              };
-              return (
-                item.population >= 20000 && (
+          <MarkerClusterer>
+            {(clusterer) =>
+              dataIleDeFrance.dataAll &&
+              dataIleDeFrance.dataAll.map((item, index) => {
+                const lagLng = {
+                  lat: item.centre.coordinates[1],
+                  lng: item.centre.coordinates[0],
+                };
+                return (
                   <Marker
                     index={index}
                     position={lagLng}
                     onClick={(e) => activeComposantAvis(item)}
+                    clusterer={clusterer}
                   />
-                )
-              );
-            })}
+                );
+              })
+            }
+          </MarkerClusterer>
         </GoogleMap>
       </LoadScript>
     </PositionMaps>

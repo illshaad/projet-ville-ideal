@@ -36,6 +36,7 @@ export const Input = styled.input`
 `;
 
 export const P = styled.p`
+  font-size: ${({ fontSize }) => fontSize || "18px"};
   color: ${({ color }) => color || "#95A5BA"};
   text-align: ${({ textAlign }) => textAlign || "center"};
 `;

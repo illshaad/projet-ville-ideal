@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDataCity } from "../../context/context";
 import { useForm } from "react-hook-form";
 import {
@@ -31,7 +31,10 @@ export default function Avis({ city, avisRef }) {
       Transport: data.Transport,
       Commentaire: data.Commentaire,
       QualitedeVie: (data["QualitedeVie"] = data["Qualiter de Vie"]),
-    }).then((res) => setResponse(res.save), setDisplay(false));
+    }).then((res) => {
+      setResponse(res.save);
+      setDisplay(false);
+    });
   };
 
   const closeComponentAvis = () => {
