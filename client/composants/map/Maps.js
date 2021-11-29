@@ -9,7 +9,7 @@ import {
 } from "@react-google-maps/api";
 import { PositionMaps, styledMap } from "../../styles/MapGoogle";
 import { useDataCity } from "../../context/context";
-
+import Avis from "../avis/Avis";
 const options = {
   styles: styledMap,
   strokeColor: "#c22420",
@@ -31,25 +31,20 @@ const options = {
 };
 
 export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
-  const {
-    dinamiqueMarker,
-    setCity,
-    setDisplay,
-    selectCityInfoWindows,
-    SetselectCityInfoWindows,
-  } = useDataCity();
+  const { dinamiqueMarker, selectCityInfoWindows, SetselectCityInfoWindows } =
+    useDataCity();
 
   const mapStyles = {
     width: "auto",
     height: "800px",
   };
 
-  const activeComposantAvis = (item) => {
-    setCity(item);
-    setDisplay(true);
-    executeScroll();
-  };
-  console.log(selectCityInfoWindows, " SLC");
+  // const activeComposantAvis = (item) => {
+  //   setCity(item);
+  //   setDisplay(true);
+  //   executeScroll();
+  // };
+
   return (
     <PositionMaps>
       <LoadScript googleMapsApiKey="AIzaSyC0iQDHGXaDAQ_Os9Boc6vxGrPZHcYQHzo">
@@ -79,9 +74,8 @@ export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
                   <Marker
                     index={index}
                     position={lagLng}
-                    onClick={(e) => activeComposantAvis(item)}
                     clusterer={clusterer}
-                    // onClick={() => SetselectCityInfoWindows(item)}
+                    onClick={() => SetselectCityInfoWindows(item)}
                   />
                 );
               })
@@ -94,7 +88,7 @@ export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
                 lng: selectCityInfoWindows.centre.coordinates[0],
               }}
             >
-              <span>Je test un truc</span>
+              <Avis />
             </InfoWindow>
           )}
         </GoogleMap>

@@ -19,12 +19,13 @@ import { saveAvis } from "../../service/api";
 import information from "./information.json";
 import commentaire from "./commentaire.json";
 
-export default function Avis({ city, avisRef }) {
-  const { setDisplay, setResponse } = useDataCity();
+export default function Avis() {
+  const { setDisplay, setResponse, selectCityInfoWindows } = useDataCity();
   const { handleSubmit, register } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
 
+  console.log(selectCityInfoWindows, " INFO");
   const onSubmit = (data) => {
     console.log(data, "????");
     saveAvis({
@@ -48,14 +49,12 @@ export default function Avis({ city, avisRef }) {
     });
   };
 
-  const closeComponentAvis = () => {
-    setDisplay(false);
-  };
-
   return (
-    <div ref={avisRef}>
-      <P>Vous allez noté la ville : {city.nom} </P>
-      <P>Qui est dans le département : {city.departement.nom}</P>
+    <>
+      <P>Vous allez noté la ville : {selectCityInfoWindows.nom} </P>
+      <P>
+        Qui est dans le département : {selectCityInfoWindows.departement.nom}
+      </P>
 
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FlexContainer>
@@ -132,10 +131,7 @@ export default function Avis({ city, avisRef }) {
         ) : (
           <Button disabled>Enregistrer</Button>
         )}
-        <Button cursor="pointer" onClick={closeComponentAvis}>
-          Fermer
-        </Button>
       </Form>
-    </div>
+    </>
   );
 }
