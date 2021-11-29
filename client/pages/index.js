@@ -7,7 +7,6 @@ import Modal from "../composants/modal/Modal";
 import Search from "../composants/search/Search";
 
 export default function Home({ dataIleDeFrance }) {
-  console.log(dataIleDeFrance.dataAll, "DATA");
   const { city, display, response } = useDataCity();
   const avisRef = useRef(null);
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);

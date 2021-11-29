@@ -1,10 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from "react";
+import React from "react";
 import {
   GoogleMap,
   LoadScript,
   Marker,
   MarkerClusterer,
+  InfoWindow,
 } from "@react-google-maps/api";
 import { PositionMaps, styledMap } from "../../styles/MapGoogle";
 import { useDataCity } from "../../context/context";
@@ -30,11 +31,17 @@ const options = {
 };
 
 export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
-  const { setCity, setDisplay } = useDataCity();
+  const {
+    dinamiqueMarker,
+    setCity,
+    setDisplay,
+    selectCityInfoWindows,
+    SetselectCityInfoWindows,
+  } = useDataCity();
 
   const mapStyles = {
-    width: "800px",
-    height: "600px",
+    width: "auto",
+    height: "800px",
   };
 
   const activeComposantAvis = (item) => {
@@ -42,14 +49,22 @@ export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
     setDisplay(true);
     executeScroll();
   };
-
+  console.log(selectCityInfoWindows, " SLC");
   return (
     <PositionMaps>
       <LoadScript googleMapsApiKey="AIzaSyC0iQDHGXaDAQ_Os9Boc6vxGrPZHcYQHzo">
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={11}
-          center={{ lat: 48.866667, lng: 2.333333 }}
+          zoom={dinamiqueMarker ? 15 : 11}
+          center={
+            (dinamiqueMarker && {
+              lat: dinamiqueMarker?.lat,
+              lng: dinamiqueMarker?.long,
+            }) || {
+              lat: 48.866667,
+              lng: 2.333333,
+            }
+          }
           options={options}
         >
           <MarkerClusterer>
@@ -66,11 +81,22 @@ export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
                     position={lagLng}
                     onClick={(e) => activeComposantAvis(item)}
                     clusterer={clusterer}
+                    // onClick={() => SetselectCityInfoWindows(item)}
                   />
                 );
               })
             }
           </MarkerClusterer>
+          {selectCityInfoWindows && (
+            <InfoWindow
+              position={{
+                lat: selectCityInfoWindows.centre.coordinates[1],
+                lng: selectCityInfoWindows.centre.coordinates[0],
+              }}
+            >
+              <span>Je test un truc</span>
+            </InfoWindow>
+          )}
         </GoogleMap>
       </LoadScript>
     </PositionMaps>

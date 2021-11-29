@@ -48,7 +48,11 @@ export const ContainerSelect = styled.div`
 
 export const FlexContainer = styled.div`
   display: flex;
+  flex-direction: ${({ flexDirection }) => flexDirection || null};
+  justify-content: space-around;
   align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
 `;
 
 export const Card = styled.div`
@@ -68,16 +72,12 @@ export const Perror = styled.span`
 `;
 
 export const Form = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  align-items: center;
-  gap: 10px;
-  margin-left: 20px;
+  gap: 5px;
 `;
 
 export const Textarea = styled.textarea`
   width: 320px;
-  height: 160px;
+  height: 155px;
   border: none;
   background: #e8e7e8;
   padding: 25px;
@@ -90,4 +90,27 @@ export const Select = styled.select`
   color: grey;
   font-size: 15px;
   display: flex;
+`;
+
+export const PinkArrowRight = styled.div`
+  cursor: pointer;
+  font-size: 28px;
+  color: #6347d1;
+`;
+
+export const PinkArrowLeft = styled.div`
+  cursor: pointer;
+  font-size: 28px;
+  color: #6347d1;
+`;
+
+export const GreyArrowRight = styled.div`
+  cursor: pointer;
+  font-size: 28px;
+  color: grey;
+`;
+export const GreyArrowLeft = styled.div`
+  cursor: pointer;
+  font-size: 28px;
+  color: grey;
 `;

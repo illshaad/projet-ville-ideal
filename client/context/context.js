@@ -6,7 +6,8 @@ export const DataCityProvider = ({ children }) => {
   const [city, setCity] = useState(null);
   const [display, setDisplay] = useState(false);
   const [response, setResponse] = useState();
-
+  const [dinamiqueMarker, setDinamiqueMarker] = useState(null);
+  const [selectCityInfoWindows, SetselectCityInfoWindows] = useState(null);
   return (
     <dataCityContext.Provider
       value={{
@@ -16,6 +17,10 @@ export const DataCityProvider = ({ children }) => {
         setDisplay,
         response,
         setResponse,
+        dinamiqueMarker,
+        setDinamiqueMarker,
+        selectCityInfoWindows,
+        SetselectCityInfoWindows,
       }}
     >
       {children}
