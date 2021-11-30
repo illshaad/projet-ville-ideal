@@ -19,15 +19,14 @@ import { saveAvis } from "../../service/api";
 import information from "./information.json";
 import commentaire from "./commentaire.json";
 
-export default function Avis() {
-  const { setDisplay, setResponse, selectCityInfoWindows } = useDataCity();
-  const { handleSubmit, register } = useForm({});
+export default function Avis({ close }) {
+  const { setResponse, selectCityInfoWindows, setSelectCityInfoWindows } =
+    useDataCity();
+  const { handleSubmit, register, setValue } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
 
-  console.log(selectCityInfoWindows, " INFO");
   const onSubmit = (data) => {
-    console.log(data, "????");
     saveAvis({
       Environement: data.Environement,
       Transports: data.Transports,
@@ -45,7 +44,6 @@ export default function Avis() {
       QualitedeVie: (data["QualitedeVie"] = data["Qualiter de Vie"]),
     }).then((res) => {
       setResponse(res.save);
-      setDisplay(false);
     });
   };
 
@@ -113,9 +111,9 @@ export default function Avis() {
           </Card>
           {currentIndexCommentaire !== commentaire?.length - 1 ? (
             <PinkArrowRight
-              onClick={() =>
-                setCurrentIndexCommentaire(currentIndexCommentaire + 1)
-              }
+              onClick={() => {
+                setCurrentIndexCommentaire(currentIndexCommentaire + 1);
+              }}
             >
               &gt;
             </PinkArrowRight>

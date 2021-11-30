@@ -30,13 +30,17 @@ const options = {
   fullscreenControl: false,
 };
 
-export default function MapGoogle({ dataIleDeFrance, executeScroll }) {
-  const { dinamiqueMarker, selectCityInfoWindows, SetselectCityInfoWindows } =
-    useDataCity();
+export default function MapGoogle({ dataIleDeFrance }) {
+  const {
+    dinamiqueMarker,
+    selectCityInfoWindows,
+    SetselectCityInfoWindows,
+    closeWindows,
+  } = useDataCity();
 
   const mapStyles = {
     width: "auto",
-    height: "800px",
+    height: "720px",
   };
 
   // const activeComposantAvis = (item) => {

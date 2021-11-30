@@ -114,3 +114,34 @@ export const GreyArrowLeft = styled.div`
   font-size: 28px;
   color: grey;
 `;
+
+export const Header = styled.header`
+  width: auto;
+  height: 80px;
+  background: #758ecd;
+  margin-top: -21px;
+`;
+
+export const CardHome = styled.div`
+  margin: 60px auto;
+  width: 1280px;
+  height: 800px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 0px #000000;
+  overflow: hidden;
+`;
+
+export const Menu = styled.div`
+  width: 500px;
+`;
+
+export const H1 = styled.h1`
+  padding-top: 15px;
+  padding-left: 10px;
+  color: white;
+`;
+
+export const FlexContainerHome = styled.div`
+  display: flex;
+`;

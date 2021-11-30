@@ -8,6 +8,7 @@ export const DataCityProvider = ({ children }) => {
   const [response, setResponse] = useState();
   const [dinamiqueMarker, setDinamiqueMarker] = useState(null);
   const [selectCityInfoWindows, SetselectCityInfoWindows] = useState(null);
+  const [closeWindows, setCloseWindows] = useState(false);
   return (
     <dataCityContext.Provider
       value={{
@@ -21,6 +22,8 @@ export const DataCityProvider = ({ children }) => {
         setDinamiqueMarker,
         selectCityInfoWindows,
         SetselectCityInfoWindows,
+        closeWindows,
+        setCloseWindows,
       }}
     >
       {children}
