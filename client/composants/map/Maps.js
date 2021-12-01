@@ -5,11 +5,10 @@ import {
   LoadScript,
   Marker,
   MarkerClusterer,
-  InfoWindow,
 } from "@react-google-maps/api";
 import { PositionMaps, styledMap } from "../../styles/MapGoogle";
 import { useDataCity } from "../../context/context";
-import Avis from "../avis/Avis";
+
 const options = {
   styles: styledMap,
   strokeColor: "#c22420",
@@ -31,23 +30,12 @@ const options = {
 };
 
 export default function MapGoogle({ dataIleDeFrance }) {
-  const {
-    dinamiqueMarker,
-    selectCityInfoWindows,
-    SetselectCityInfoWindows,
-    closeWindows,
-  } = useDataCity();
+  const { dinamiqueMarker, SetselectCityInfoWindows } = useDataCity();
 
   const mapStyles = {
     width: "auto",
     height: "720px",
   };
-
-  // const activeComposantAvis = (item) => {
-  //   setCity(item);
-  //   setDisplay(true);
-  //   executeScroll();
-  // };
 
   return (
     <PositionMaps>
@@ -85,16 +73,6 @@ export default function MapGoogle({ dataIleDeFrance }) {
               })
             }
           </MarkerClusterer>
-          {selectCityInfoWindows && (
-            <InfoWindow
-              position={{
-                lat: selectCityInfoWindows.centre.coordinates[1],
-                lng: selectCityInfoWindows.centre.coordinates[0],
-              }}
-            >
-              <Avis />
-            </InfoWindow>
-          )}
         </GoogleMap>
       </LoadScript>
     </PositionMaps>

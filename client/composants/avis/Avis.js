@@ -15,40 +15,40 @@ import {
   FlexContainer,
   Select,
 } from "../../styles/global";
-import { saveAvis } from "../../service/api";
+import { createRating } from "../../service/api";
 import information from "./information.json";
 import commentaire from "./commentaire.json";
 
-export default function Avis({ close }) {
-  const { setResponse, selectCityInfoWindows, setSelectCityInfoWindows } =
-    useDataCity();
-  const { handleSubmit, register, setValue } = useForm({});
+export default function Avis({ prevStep }) {
+  const { setResponse, selectCityInfoWindows } = useDataCity();
+  const { handleSubmit, register, watch } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
 
-  const onSubmit = (data) => {
-    saveAvis({
-      Environement: data.Environement,
-      Transports: data.Transports,
-      Securite: data.Securite,
-      Sante: data.Sante,
-      SportetLoisir: (data["Sportetloisir"] = data["Sport et Loisir"]),
-      Culture: data.Culture,
-      Commerce: data.Commerce,
-      Enseignement: data.Environement,
-      Transport: data.Transport,
-      CommentaireNegative: (data["CommentaireNegative"] =
-        data["Commentaire negative"]),
-      CommentairePositive: (data["CommentairePositive"] =
-        data["Commentaire positive"]),
-      QualitedeVie: (data["QualitedeVie"] = data["Qualiter de Vie"]),
-    }).then((res) => {
-      setResponse(res.save);
+  const qualiter = watch(information[8].titre);
+  const remarkPositive = watch(commentaire[0].titre);
+  const remarkNegative = watch(commentaire[1].titre);
+  const onSubmit = async (data) => {
+    const { save } = await createRating({
+      environement: data?.Environement || null,
+      transports: data.Transports,
+      security: data.Securite,
+      sante: data.Sante,
+      sportandleisure: (data["Sportetloisir"] = data["Sport et Loisir"]),
+      culture: data.Culture,
+      commerce: data.Commerce,
+      enseignement: data.Environement,
+      transport: data.Transport,
+      remarkPositive: remarkPositive,
+      remarkNegative: remarkNegative,
+      quality: qualiter,
     });
+    setResponse(save);
   };
 
   return (
     <>
+      <GreyArrowLeft onClick={() => prevStep()}> &lt; </GreyArrowLeft>
       <P>Vous allez noté la ville : {selectCityInfoWindows.nom} </P>
       <P>
         Qui est dans le département : {selectCityInfoWindows.departement.nom}
@@ -63,7 +63,6 @@ export default function Avis({ close }) {
           ) : (
             <GreyArrowLeft> &lt;</GreyArrowLeft>
           )}
-
           <Card>
             <P color="#3197d4">{information?.[currentIndex]?.titre}</P>
             <ContainerSelect>
@@ -88,46 +87,47 @@ export default function Avis({ close }) {
             <GreyArrowRight> &gt; </GreyArrowRight>
           )}
         </FlexContainer>
-        <FlexContainer>
-          {currentIndexCommentaire > 0 ? (
-            <PinkArrowLeft
-              onClick={() =>
-                setCurrentIndexCommentaire(currentIndexCommentaire - 1)
-              }
-            >
-              &lt;
-            </PinkArrowLeft>
-          ) : (
-            <GreyArrowLeft> &lt;</GreyArrowLeft>
-          )}
-          <Card padding="0px 5px ">
-            <P color="#3197d4">
-              {commentaire?.[currentIndexCommentaire].titre}
-            </P>
-            <Textarea
-              placeholder="Noter ici votre commentaire"
-              {...register(commentaire?.[currentIndexCommentaire].titre)}
-            ></Textarea>
-          </Card>
-          {currentIndexCommentaire !== commentaire?.length - 1 ? (
-            <PinkArrowRight
-              onClick={() => {
-                setCurrentIndexCommentaire(currentIndexCommentaire + 1);
-              }}
-            >
-              &gt;
-            </PinkArrowRight>
-          ) : (
-            <GreyArrowRight> &gt; </GreyArrowRight>
-          )}
-        </FlexContainer>
 
-        {commentaire?.length > 0 ? (
+        {qualiter === undefined ? null : (
+          <FlexContainer>
+            {currentIndexCommentaire > 0 ? (
+              <PinkArrowLeft
+                onClick={() =>
+                  setCurrentIndexCommentaire(currentIndexCommentaire - 1)
+                }
+              >
+                &lt;
+              </PinkArrowLeft>
+            ) : (
+              <GreyArrowLeft> &lt;</GreyArrowLeft>
+            )}
+            <Card padding="0px 5px ">
+              <P color="#3197d4">
+                {commentaire?.[currentIndexCommentaire].titre}
+              </P>
+              <Textarea
+                placeholder="Noter ici votre commentaire"
+                {...register(commentaire?.[currentIndexCommentaire].titre)}
+              ></Textarea>
+            </Card>
+            {currentIndexCommentaire !== commentaire?.length - 1 ? (
+              <PinkArrowRight
+                onClick={() => {
+                  setCurrentIndexCommentaire(currentIndexCommentaire + 1);
+                }}
+              >
+                &gt;
+              </PinkArrowRight>
+            ) : (
+              <GreyArrowRight> &gt; </GreyArrowRight>
+            )}
+          </FlexContainer>
+        )}
+
+        {remarkPositive === undefined && remarkNegative === undefined ? null : (
           <Button cursor="pointer " type="submit">
             Enregistrer
           </Button>
-        ) : (
-          <Button disabled>Enregistrer</Button>
         )}
       </Form>
     </>

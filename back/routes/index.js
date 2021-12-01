@@ -3,6 +3,6 @@ const router = express.Router();
 const cityCtrl = require("../controller/city-ctrl");
 
 router.get("/city", cityCtrl.getDataIleDeFrance);
-router.post("/avis", cityCtrl.saveAvis);
+router.post("/avis", cityCtrl.createRating);
 
 module.exports = router;
