@@ -5,9 +5,9 @@ const getDataIleDeFrance = async () => {
   return { dataAll };
 };
 
-const saveAvis = async (data) => {
+const createRating = async (data) => {
   const { data: save } = await Axios.post("http://localhost:5000/avis", data);
   return { save };
 };
 
-export { getDataIleDeFrance, saveAvis };
+export { getDataIleDeFrance, createRating };

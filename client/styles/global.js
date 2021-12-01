@@ -145,3 +145,37 @@ export const H1 = styled.h1`
 export const FlexContainerHome = styled.div`
   display: flex;
 `;
+
+export const Remark = styled.p`
+  font-size: 15px;
+  margin: 0 auto;
+  padding: 30px;
+  color: #fff;
+`;
+
+export const RatingGlobal = styled.div`
+  border: 1px solid red;
+  font-size: 15px;
+  width: 40px;
+  margin: 20px auto;
+  border-radius: 4px;
+  text-align: center;
+`;
+
+export const CardRating = styled.div`
+  width: 300px;
+  height: 200px;
+  border-radius: 5px;
+`;
+
+export const ColorRemarkPositive = styled.div`
+  background: #96e072;
+  height: 100px;
+  border-radius: 5px 5px 0px 0px;
+`;
+
+export const ColorRemarkNegative = styled.div`
+  background: #ff4b3e;
+  height: 100px;
+  border-radius: 0px 0px 5px 5px;
+`;

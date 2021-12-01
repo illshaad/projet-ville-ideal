@@ -28,7 +28,7 @@ const getDataIleDeFrance = async (req, res) => {
   }
 };
 
-const saveAvis = async (req, res) => {
+const createRating = async (req, res) => {
   const dataToFront = req.body;
   console.log(dataToFront);
 
@@ -51,4 +51,4 @@ const saveAvis = async (req, res) => {
   // }
 };
 
-module.exports = { getDataIleDeFrance, saveAvis };
+module.exports = { getDataIleDeFrance, createRating };
