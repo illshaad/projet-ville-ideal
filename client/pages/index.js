@@ -3,14 +3,14 @@ import Maps from "../composants/map/Maps";
 import { getDataIleDeFrance } from "../service/api";
 import { useDataCity } from "../context/context";
 import Hearder from "../composants/header/Hearder";
-import Modal from "../composants/modal/Modal";
 import Search from "../composants/search/Search";
 import ViewAllRating from "../composants/menu/rating/viewAllRating";
 import { CardHome, Menu, FlexContainerHome } from "../styles/global";
 import Avis from "../composants/avis/Avis";
+import Snackbar from "../composants/snackbar/Snackbar";
 
 export default function Home({ dataIleDeFrance }) {
-  const { response, selectCityInfoWindows } = useDataCity();
+  const { response, setResponse } = useDataCity();
   const [step, setStep] = useState(0);
 
   // Si il y'a la donnée du back il faut afficher le composant ViewAllRating
@@ -37,9 +37,9 @@ export default function Home({ dataIleDeFrance }) {
             {stepComponent[step]}
           </Menu>
           <Maps dataIleDeFrance={dataIleDeFrance} />
-          {response ? <Modal /> : null}
         </FlexContainerHome>
       </CardHome>
+      {response && <Snackbar setResponse={setResponse} response={response} />}
     </>
   );
 }
