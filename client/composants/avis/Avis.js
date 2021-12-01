@@ -20,7 +20,8 @@ import information from "./information.json";
 import commentaire from "./commentaire.json";
 
 export default function Avis({ prevStep }) {
-  const { setResponse, selectCityInfoWindows } = useDataCity();
+  const { setResponse, selectCityInfoWindows, SetselectCityInfoWindows } =
+    useDataCity();
   const { handleSubmit, register, watch } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
@@ -44,14 +45,15 @@ export default function Avis({ prevStep }) {
       quality: qualiter,
     });
     setResponse(save);
+    prevStep();
   };
 
   return (
     <>
       <GreyArrowLeft onClick={() => prevStep()}> &lt; </GreyArrowLeft>
-      <P>Vous allez noté la ville : {selectCityInfoWindows.nom} </P>
+      <P>Vous allez noté la ville : {selectCityInfoWindows?.nom} </P>
       <P>
-        Qui est dans le département : {selectCityInfoWindows.departement.nom}
+        Qui est dans le département : {selectCityInfoWindows?.departement.nom}
       </P>
 
       <Form onSubmit={handleSubmit(onSubmit)}>

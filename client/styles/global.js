@@ -119,7 +119,7 @@ export const Header = styled.header`
   width: auto;
   height: 80px;
   background: #758ecd;
-  margin-top: -21px;
+  margin-top: -22px;
 `;
 
 export const CardHome = styled.div`
