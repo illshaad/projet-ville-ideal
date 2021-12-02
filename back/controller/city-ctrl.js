@@ -31,21 +31,22 @@ const getDataIleDeFrance = async (req, res) => {
 const createRating = async (req, res) => {
   try {
     const dataToFront = req.body;
-    const transformation = (data) => {
+    console.log(dataToFront);
+    const formatAverageNumber = (data) => {
       let array = [];
       for (var number in dataToFront) {
         array.push(parseInt(dataToFront[number]));
       }
       const removeNaN = array.filter((e) => Boolean(e));
-      const some = removeNaN.reduce(function (accu, current) {
-        return accu + current;
-      }, 0);
+      const some = removeNaN.reduce(
+        (previousValue, currentValue) => previousValue + currentValue
+      );
       const moyenne = some / removeNaN.length;
       const round = moyenne.toFixed(2);
       return parseInt(round);
     };
 
-    const totalRating = transformation(dataToFront);
+    const totalRating = formatAverageNumber(dataToFront);
 
     const saveRating = new Rating({
       ...req.body,

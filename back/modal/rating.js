@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const ratingsSchema = mongoose.Schema({
+  nameCity: String,
+  nameDepartement: String,
   commerce: String,
   culture: String,
   enseignement: String,

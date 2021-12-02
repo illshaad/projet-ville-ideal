@@ -22,6 +22,7 @@ import commentaire from "./commentaire.json";
 export default function Avis({ prevStep }) {
   const { setResponse, selectCityInfoWindows, SetselectCityInfoWindows } =
     useDataCity();
+
   const { handleSubmit, register, watch } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
@@ -31,20 +32,25 @@ export default function Avis({ prevStep }) {
   const remarkNegative = watch(commentaire[1].titre);
   const onSubmit = async (data) => {
     const responseToFront = await createRating({
+      nameCity: selectCityInfoWindows?.nom || null,
+      nameDepartement: selectCityInfoWindows?.departement.nom || null,
       environement: data?.Environement || null,
-      transports: data.Transports,
-      security: data.Securite,
-      sante: data.Sante,
-      sportandleisure: (data["Sportetloisir"] = data["Sport et Loisir"]),
-      culture: data.Culture,
-      commerce: data.Commerce,
-      enseignement: data.Environement,
-      transport: data.Transport,
-      remarkPositive: remarkPositive,
-      remarkNegative: remarkNegative,
-      quality: qualiter,
+      transports: data.Transports || null,
+      security: data.Securite || null,
+      sante: data.Sante || null,
+      sportandleisure:
+        (data["Sportetloisir"] = data["Sport et Loisir"]) || null,
+      culture: data.Culture || null,
+      commerce: data.Commerce || null,
+      enseignement: data.Environement || null,
+      transport: data.Transport || null,
+      remarkPositive: remarkPositive || null,
+      remarkNegative: remarkNegative || null,
+      quality: qualiter || null,
     });
+
     console.log(responseToFront, " RETOUR DU BACK");
+
     setResponse(responseToFront.save.message);
     prevStep();
   };
@@ -67,6 +73,7 @@ export default function Avis({ prevStep }) {
             <GreyArrowLeft> &lt;</GreyArrowLeft>
           )}
           <Card>
+            <P>{[currentIndex][0] + 1} / 9</P>
             <P color="#3197d4">{information?.[currentIndex]?.titre}</P>
             <ContainerSelect>
               <P textAlign="justify" fontSize="15px">
@@ -105,6 +112,7 @@ export default function Avis({ prevStep }) {
               <GreyArrowLeft> &lt;</GreyArrowLeft>
             )}
             <Card padding="0px 5px ">
+              <P>{[currentIndexCommentaire][0] + 1} / 2</P>
               <P color="#3197d4">
                 {commentaire?.[currentIndexCommentaire].titre}
               </P>
