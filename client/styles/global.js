@@ -66,9 +66,9 @@ export const Card = styled.div`
 
 export const Perror = styled.span`
   color: red;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
-  font-weight: 800;
+  font-weight: 500;
 `;
 
 export const Form = styled.form`
@@ -124,8 +124,8 @@ export const Header = styled.header`
 
 export const CardHome = styled.div`
   margin: 60px auto;
-  width: 1280px;
-  height: 800px;
+  width: ${({ width }) => width || "1280px"};
+  height: ${({ height }) => height || "800px"};
   background: #fff;
   border-radius: 10px;
   box-shadow: 1px 1px 10px 0px #000000;
@@ -139,7 +139,8 @@ export const Menu = styled.div`
 export const H1 = styled.h1`
   padding-top: 15px;
   padding-left: 10px;
-  color: white;
+  color: ${({ color }) => color || "whith"};
+  text-align: center;
 `;
 
 export const FlexContainerHome = styled.div`
@@ -178,4 +179,12 @@ export const ColorRemarkNegative = styled.div`
   background: #ff4b3e;
   height: 100px;
   border-radius: 0px 0px 5px 5px;
+`;
+
+export const FormAuthentification = styled.form`
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
