@@ -1,5 +1,5 @@
 const Axios = require("axios");
-const Avis = require("../modal/avis");
+const Rating = require("../modal/rating");
 const getDataIleDeFrance = async (req, res) => {
   try {
     const [dataCommune, dataDepartement] = await Axios.all([
@@ -29,26 +29,40 @@ const getDataIleDeFrance = async (req, res) => {
 };
 
 const createRating = async (req, res) => {
-  const dataToFront = req.body;
-  console.log(dataToFront);
+  try {
+    const dataToFront = req.body;
+    console.log(dataToFront);
+    const formatAverageNumber = (data) => {
+      let array = [];
+      for (var number in dataToFront) {
+        array.push(parseInt(dataToFront[number]));
+      }
+      const removeNaN = array.filter((e) => Boolean(e));
+      const some = removeNaN.reduce(
+        (previousValue, currentValue) => previousValue + currentValue
+      );
+      const moyenne = some / removeNaN.length;
+      const round = moyenne.toFixed(2);
+      return parseInt(round);
+    };
 
-  res
-    .status(200)
-    .json("Votre avis est bien enregistrée nous allons effectuer un controle");
-  // try {
-  //   const avis = new Avis({
-  //     ...req.body,
-  //   });
-  //   avis.save();
-  //   res
-  //     .status(201)
-  //     .json(
-  //       "Votre avis est bien enregistrée nous allons effectuer un controle"
-  //     );
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(400).send("oups erreur");
-  // }
+    const totalRating = formatAverageNumber(dataToFront);
+
+    const saveRating = new Rating({
+      ...req.body,
+    });
+    saveRating.save();
+
+    res.status(201).json({
+      message:
+        "Votre avis est bien enregistré nous allons effectuer un contrôle",
+      someRating: totalRating,
+      ...dataToFront,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("oups erreur");
+  }
 };
 
 module.exports = { getDataIleDeFrance, createRating };
