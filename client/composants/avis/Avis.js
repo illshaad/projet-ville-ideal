@@ -97,7 +97,6 @@ export default function Avis({ prevStep }) {
             <GreyArrowRight> &gt; </GreyArrowRight>
           )}
         </FlexContainer>
-
         {qualiter === undefined ? null : (
           <FlexContainer>
             {currentIndexCommentaire > 0 ? (
@@ -134,8 +133,13 @@ export default function Avis({ prevStep }) {
             )}
           </FlexContainer>
         )}
-
         {remarkPositive === undefined && remarkNegative === undefined ? null : (
+          <Button cursor="pointer " type="submit">
+            Enregistrer
+          </Button>
+        )}
+        // mettre en disable et{" "}
+        {remarkPositive && remarkNegative && (
           <Button cursor="pointer " type="submit">
             Enregistrer
           </Button>
