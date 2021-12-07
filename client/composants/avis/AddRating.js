@@ -19,42 +19,46 @@ import { createRating } from "../../service/api";
 import information from "./information.json";
 import commentaire from "./commentaire.json";
 
-export default function Avis({ prevStep }) {
-  const { setResponse, selectCityInfoWindows } =
-    useDataCity();
+export default function AddRatingComposant({ prevStep }) {
+  const { setResponse, selectCityInfoWindows } = useDataCity();
 
   const { handleSubmit, register, watch } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
 
- // a voir comment optimiser cela //
+  // a voir comment optimiser cela //
   const remarkPositive = watch(commentaire[0].titre);
   const remarkNegative = watch(commentaire[1].titre);
   const quality = watch(information[8].name);
-//
+  //
+
   const onSubmit = async (data) => {
-    const responseToFront = await createRating({
-      nameCity: selectCityInfoWindows?.nom || null,
-      nameDepartement: selectCityInfoWindows?.departement.nom || null,
-      environement: data?.environement || null,
-      transports: data.transports || null,
-      security: data.security|| null,
-      health: data.health || null,
-      sportandleasur:data.sportandleasur || null,
-      culture: data.culture || null,
-      trade: data.trade || null,
-      education: data.education || null,
-      remarkPositive: remarkPositive || null,
-      remarkNegative: remarkNegative || null,
-      qualityOfLife: data.qualityOfLife || null,
-    });
+    try {
+      const responseToFront = await createRating({
+        nameCity: selectCityInfoWindows?.nom || null,
+        nameDepartement: selectCityInfoWindows?.departement.nom || null,
+        environement: data?.environement || null,
+        transports: data?.transports || null,
+        security: data?.security || null,
+        health: data?.health || null,
+        sportandleasur: data?.sportandleasur || null,
+        culture: data?.culture || null,
+        trade: data?.trade || null,
+        education: data?.education || null,
+        remarkPositive: remarkPositive || null,
+        remarkNegative: remarkNegative || null,
+        qualityOfLife: data?.qualityOfLife || null,
+      });
+      setResponse(responseToFront.save.message);
+      prevStep();
+      console.log(responseToFront, " RETOUR DU BACK");
 
-    console.log(responseToFront, " RETOUR DU BACK");
-
-    setResponse(responseToFront.save.message);
-    prevStep();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
+ 
   return (
     <>
       <GreyArrowLeft onClick={() => prevStep()}> &lt; </GreyArrowLeft>
@@ -74,22 +78,22 @@ export default function Avis({ prevStep }) {
           )}
           <Card>
             <P>{[currentIndex][0] + 1} / 9</P>
-            <P color="#3197d4">{information?.[currentIndex]?.titre}</P>
+            <P color="#3197d4">{information[currentIndex]?.titre}</P>
             <ContainerSelect>
               <P textAlign="justify" fontSize="15px">
-                {information?.[currentIndex]?.info}
+                {information[currentIndex]?.info}
               </P>
             </ContainerSelect>
             <Select
-              name={information?.[currentIndex].name}
-              {...register(information?.[currentIndex].name)}
+              name={information[currentIndex].name}
+              {...register(information[currentIndex].name)}
             >
-              {information[currentIndex].value.map((f) => (
-                <option value={f}>{f}</option>
+              {information[currentIndex].value.map((index,f) => (
+                <option key={index} value={f}>{f}</option>
               ))}
             </Select>
           </Card>
-          {currentIndex !== information?.length - 1 ? (
+          {currentIndex !== information.length - 1 ? (
             <PinkArrowRight onClick={() => setCurrentIndex(currentIndex + 1)}>
               &gt;
             </PinkArrowRight>
@@ -97,7 +101,8 @@ export default function Avis({ prevStep }) {
             <GreyArrowRight> &gt; </GreyArrowRight>
           )}
         </FlexContainer>
-        {quality && <FlexContainer>
+        {quality && (
+          <FlexContainer>
             {currentIndexCommentaire > 0 ? (
               <PinkArrowLeft
                 onClick={() =>
@@ -112,14 +117,14 @@ export default function Avis({ prevStep }) {
             <Card padding="0px 5px ">
               <P>{[currentIndexCommentaire][0] + 1} / 2</P>
               <P color="#3197d4">
-                {commentaire?.[currentIndexCommentaire].titre}
+                {commentaire[currentIndexCommentaire].titre}
               </P>
               <Textarea
                 placeholder="Noter ici votre commentaire"
-                {...register(commentaire?.[currentIndexCommentaire].titre)}
+                {...register(commentaire[currentIndexCommentaire].titre)}
               ></Textarea>
             </Card>
-            {currentIndexCommentaire !== commentaire?.length - 1 ? (
+            {currentIndexCommentaire !== commentaire.length - 1 ? (
               <PinkArrowRight
                 onClick={() => {
                   setCurrentIndexCommentaire(currentIndexCommentaire + 1);
@@ -130,13 +135,16 @@ export default function Avis({ prevStep }) {
             ) : (
               <GreyArrowRight> &gt; </GreyArrowRight>
             )}
-          </FlexContainer>}
-     
-        {remarkPositive && remarkNegative && (
-          <Button cursor="pointer " type="submit">
-            Enregistrer
-          </Button>
+          </FlexContainer>
         )}
+
+        <Button
+          disabled={!remarkPositive && !remarkNegative}
+          cursor={!remarkPositive && !remarkNegative ? null : "pointer"}
+          type="submit"
+        >
+          Enregistrer
+        </Button>
       </Form>
     </>
   );

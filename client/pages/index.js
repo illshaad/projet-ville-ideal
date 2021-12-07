@@ -15,8 +15,8 @@ export default function Home({ dataIleDeFrance }) {
 
   // Si il y'a la donnée du back il faut afficher dans le composant ViewAllRating
 
-  const nextStep = (_step, data) => {
-    setStep(_step, data);
+  const nextStep = (step, data) => {
+    setStep(step, data);
   };
   const prevStep = () => {
     setStep((prev) => prev - 1);
