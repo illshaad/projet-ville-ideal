@@ -1,16 +1,12 @@
-import React, { useState, forwardRef } from "react";
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import React , { useState }from "react";
+import Snackbar from "@material-ui/core/Snackbar";
 
-const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
-export default function Snacbars({ response, setResponse }) {
+export default function SnackbarComposant({ response, setResponse }) {
   const [open, setOpen] = useState(true);
 
-  const handleClose = (event, reason) => {
+
+  const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -19,12 +15,16 @@ export default function Snacbars({ response, setResponse }) {
   };
 
   return (
-    <Stack spacing={2} sx={{ width: "100%" }}>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          {response}
-        </Alert>
-      </Snackbar>
-    </Stack>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left"
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={response}
+      />
   );
 }
+
