@@ -1,12 +1,15 @@
+const Rating = require("../modal/rating");
+
+
 const createRating = async (req, res) => {
   try {
     const dataToFront = req.body;
-    console.log(dataToFront);
     const formatAverageNumber = (data) => {
       let array = [];
-      for (var number in dataToFront) {
+      for (let number in dataToFront) {
         array.push(parseInt(dataToFront[number]));
       }
+     
       const removeNaN = array.filter((e) => Boolean(e));
       const some = removeNaN.reduce(
         (previousValue, currentValue) => previousValue + currentValue

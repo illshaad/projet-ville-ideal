@@ -4,16 +4,16 @@ import { getDataIleDeFrance } from "../service/api";
 import { useDataCity } from "../context/context";
 import Hearder from "../composants/header/Hearder";
 import Search from "../composants/search/Search";
-import ViewAllRating from "../composants/menu/rating/viewAllRating";
+import ViewAllRating from "../composants/menu/rating/ViewAllRating";
 import { CardHome, Menu, FlexContainerHome } from "../styles/global";
-import Avis from "../composants/avis/Avis";
+import AddRating from "../composants/avis/AddRating";
 import Snackbar from "../composants/snackbar/Snackbar";
 
 export default function Home({ dataIleDeFrance }) {
   const { response, setResponse } = useDataCity();
   const [step, setStep] = useState(0);
 
-  // Si il y'a la donnée du back il faut afficher le composant ViewAllRating
+  // Si il y'a la donnée du back il faut afficher dans le composant ViewAllRating
 
   const nextStep = (_step, data) => {
     setStep(_step, data);
@@ -24,7 +24,7 @@ export default function Home({ dataIleDeFrance }) {
 
   const stepComponent = [
     <ViewAllRating nextStep={nextStep} />,
-    <Avis prevStep={prevStep} />,
+    <AddRating prevStep={prevStep} />,
   ];
 
   return (

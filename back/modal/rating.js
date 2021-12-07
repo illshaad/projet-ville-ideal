@@ -3,18 +3,17 @@ const mongoose = require("mongoose");
 const ratingsSchema = mongoose.Schema({
   nameCity: String,
   nameDepartement: String,
-  commerce: String,
+  trade: String,
   culture: String,
-  enseignement: String,
+  education: String,
   environement: String,
   quality: String,
-  sante: String,
+  health: String,
   security: String,
   sportandleisure: String,
   transports: String,
   remarkPositive: String,
   remarkNegative: String,
-  textarea: String,
 });
 
 const dataModelRating = mongoose.model("ratings", ratingsSchema);
