@@ -1,5 +1,4 @@
 const Axios = require("axios");
-const Rating = require("../modal/rating");
 
 const getDataIleDeFrance = async (req, res) => {
   try {

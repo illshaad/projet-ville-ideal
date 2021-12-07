@@ -20,33 +20,33 @@ import information from "./information.json";
 import commentaire from "./commentaire.json";
 
 export default function Avis({ prevStep }) {
-  const { setResponse, selectCityInfoWindows, SetselectCityInfoWindows } =
+  const { setResponse, selectCityInfoWindows } =
     useDataCity();
 
   const { handleSubmit, register, watch } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
 
-  const qualiter = watch(information[8].titre);
+ // a voir comment optimiser cela //
   const remarkPositive = watch(commentaire[0].titre);
   const remarkNegative = watch(commentaire[1].titre);
+  const quality = watch(information[8].name);
+//
   const onSubmit = async (data) => {
     const responseToFront = await createRating({
       nameCity: selectCityInfoWindows?.nom || null,
       nameDepartement: selectCityInfoWindows?.departement.nom || null,
-      environement: data?.Environement || null,
-      transports: data.Transports || null,
-      security: data.Securite || null,
-      sante: data.Sante || null,
-      sportandleisure:
-        (data["Sportetloisir"] = data["Sport et Loisir"]) || null,
-      culture: data.Culture || null,
-      commerce: data.Commerce || null,
-      enseignement: data.Environement || null,
-      transport: data.Transport || null,
+      environement: data?.environement || null,
+      transports: data.transports || null,
+      security: data.security|| null,
+      health: data.health || null,
+      sportandleasur:data.sportandleasur || null,
+      culture: data.culture || null,
+      trade: data.trade || null,
+      education: data.education || null,
       remarkPositive: remarkPositive || null,
       remarkNegative: remarkNegative || null,
-      quality: qualiter || null,
+      qualityOfLife: data.qualityOfLife || null,
     });
 
     console.log(responseToFront, " RETOUR DU BACK");
@@ -81,8 +81,8 @@ export default function Avis({ prevStep }) {
               </P>
             </ContainerSelect>
             <Select
-              name={information?.[currentIndex].titre}
-              {...register(information?.[currentIndex].titre)}
+              name={information?.[currentIndex].name}
+              {...register(information?.[currentIndex].name)}
             >
               {information[currentIndex].value.map((f) => (
                 <option value={f}>{f}</option>
@@ -97,8 +97,7 @@ export default function Avis({ prevStep }) {
             <GreyArrowRight> &gt; </GreyArrowRight>
           )}
         </FlexContainer>
-        {qualiter === undefined ? null : (
-          <FlexContainer>
+        {quality && <FlexContainer>
             {currentIndexCommentaire > 0 ? (
               <PinkArrowLeft
                 onClick={() =>
@@ -131,14 +130,8 @@ export default function Avis({ prevStep }) {
             ) : (
               <GreyArrowRight> &gt; </GreyArrowRight>
             )}
-          </FlexContainer>
-        )}
-        {remarkPositive === undefined && remarkNegative === undefined ? null : (
-          <Button cursor="pointer " type="submit">
-            Enregistrer
-          </Button>
-        )}
-        // mettre en disable et{" "}
+          </FlexContainer>}
+     
         {remarkPositive && remarkNegative && (
           <Button cursor="pointer " type="submit">
             Enregistrer
