@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Maps from "../composants/map/Maps";
-import { getDataIleDeFrance } from "../service/api";
-import { useDataCity } from "../context/context";
-import Hearder from "../composants/header/Hearder";
-import Search from "../composants/search/Search";
-import ViewAllRating from "../composants/menu/rating/ViewAllRating";
-import { CardHome, Menu, FlexContainerHome } from "../styles/global";
-import AddRating from "../composants/avis/AddRating";
-import Snackbar from "../composants/snackbar/Snackbar";
+import Maps from "../../composants/map/Maps";
+import { getDataIleDeFrance } from "../../service/api";
+import { useDataCity } from "../../context/context";
+import Hearder from "../../composants/header/Hearder";
+import Search from "../../composants/search/Search";
+import ViewAllRating from "../../composants/menu/rating/ViewAllRating";
+import { CardHome, Menu, FlexContainerHome } from "../../styles/global";
+import AddRating from "../../composants/avis/AddRating";
+import Snackbar from "../../composants/snackbar/Snackbar";
 
 export default function Home({ dataIleDeFrance }) {
   const { response, setResponse } = useDataCity();
