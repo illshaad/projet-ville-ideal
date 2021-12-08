@@ -13,7 +13,7 @@ import {
 } from "../../styles/global";
 
 const schema = yup.object().shape({
-  pseudo: yup.string().required("Le pseudo est requise"),
+  email: yup.string().required("L'email est requise"),
   password: yup.string().required("Le mots de passe est requise"),
 });
 
@@ -31,6 +31,7 @@ export default function AuthentificationComposant() {
   // }
 
   const onSubmit = async (data) => {
+    console.log(data)
     const response = await createUser(data);
     console.log(response);
   };
@@ -39,14 +40,14 @@ export default function AuthentificationComposant() {
     <>
       <H1 color="black">Bienvenue</H1>
       <FormAuthentification onSubmit={handleSubmit(onSubmit)}>
-        <label>Pseudo</label>
+        <label>E-mail</label>
         <Input
-          {...register("pseudo", {
-            required: "Le pseudo est requise",
+          {...register("email", {
+            required: "L'email est requise",
           })}
-          placeholder="Un pseudo stylé"
+          placeholder="E-mail"
         />
-        <ErrorMessage errors={errors} name="pseudo" as={Perror} />
+        <ErrorMessage errors={errors} name="email" as={Perror} />
 
         <label>Mots de passe</label>
         <Input
@@ -54,6 +55,7 @@ export default function AuthentificationComposant() {
             required: "Le mots de passe est requise",
           })}
           placeholder="Mots de passe"
+          type='password'
         />
         <ErrorMessage errors={errors} name="password" as={Perror} />
         <Button cursor="pointer " type="submit">
