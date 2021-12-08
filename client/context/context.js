@@ -6,6 +6,7 @@ export const DataCityProvider = ({ children }) => {
   const [city, setCity] = useState(null);
   const [display, setDisplay] = useState(false);
   const [response, setResponse] = useState();
+  const [responseAuth, setResponseAuth] = useState();
   const [dinamiqueMarker, setDinamiqueMarker] = useState(null);
   const [selectCityInfoWindows, SetselectCityInfoWindows] = useState(null);
   return (
@@ -21,6 +22,8 @@ export const DataCityProvider = ({ children }) => {
         setDinamiqueMarker,
         selectCityInfoWindows,
         SetselectCityInfoWindows,
+        responseAuth,
+        setResponseAuth,
       }}
     >
       {children}

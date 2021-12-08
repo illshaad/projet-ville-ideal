@@ -4,6 +4,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import * as yup from "yup";
 import { createUser } from "../../service/api";
+import { useDataCity } from "../../context/context";
 import {
   H1,
   FormAuthentification,
@@ -14,10 +15,18 @@ import {
 
 const schema = yup.object().shape({
   email: yup.string().required("L'email est requise"),
-  password: yup.string().required("Le mots de passe est requise"),
+  password: yup
+    .string()
+    .required("Le mots de passe est requise")
+    .min(
+      5,
+      "Le mots de passe est trop court - il doit comporter au moins 5 caractères"
+    ),
 });
 
-export default function AuthentificationComposant() {
+export default function AuthentificationComposant({ textButton, textWelcome }) {
+  const { setResponseAuth } = useDataCity();
+
   const {
     register,
     handleSubmit,
@@ -26,19 +35,16 @@ export default function AuthentificationComposant() {
     resolver: yupResolver(schema),
   });
 
-  // const redirection (response) => {
-  //   if(response) return
-  // }
-
   const onSubmit = async (data) => {
-    console.log(data)
     const response = await createUser(data);
-    console.log(response);
+    setResponseAuth(response);
   };
 
   return (
     <>
-      <H1 color="black">Bienvenue</H1>
+      <H1 color="black">
+        Bienvenue veuillez <br /> vous {textWelcome}
+      </H1>
       <FormAuthentification onSubmit={handleSubmit(onSubmit)}>
         <label>E-mail</label>
         <Input
@@ -55,11 +61,11 @@ export default function AuthentificationComposant() {
             required: "Le mots de passe est requise",
           })}
           placeholder="Mots de passe"
-          type='password'
+          type="password"
         />
         <ErrorMessage errors={errors} name="password" as={Perror} />
         <Button cursor="pointer " type="submit">
-          Continuer
+          {textButton}
         </Button>
       </FormAuthentification>
     </>
