@@ -14,10 +14,10 @@ import {
 } from "../../styles/global";
 
 const schema = yup.object().shape({
-  email: yup.string().required("L'email est requise"),
+  email: yup.string().required("L'email est requis"),
   password: yup
     .string()
-    .required("Le mots de passe est requise")
+    .required("Le mots de passe est requis")
     .min(
       5,
       "Le mots de passe est trop court - il doit comporter au moins 5 caractères"

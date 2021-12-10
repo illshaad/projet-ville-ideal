@@ -30,8 +30,7 @@ const options = {
 };
 
 export default function MapGoogle({ dataIleDeFrance }) {
-  const { dinamiqueMarker, selectCityInfoWindows, SetselectCityInfoWindows } =
-    useDataCity();
+  const { dinamiqueMarker, SetselectCityInfoWindows } = useDataCity();
 
   const mapStyles = {
     width: "auto",

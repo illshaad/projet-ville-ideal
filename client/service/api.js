@@ -23,15 +23,10 @@ const createUser = async (data) => {
 };
 
 const loginUser = async (data) => {
-  try {
-    const { data: user } = await Axios.post(
-      `${process.env.NEXT_PUBLIC_API_BACKEND}/users/login`,
-      data
-    );
-    return { user };
-  } catch (error) {
-    console.log(error.message);
-  }
+  return await Axios.post(
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/users/login`,
+    data
+  ).catch((error) => error.response);
 };
 
 export { getDataIleDeFrance, createRating, createUser, loginUser };
