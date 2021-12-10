@@ -5,14 +5,14 @@ const JwtUtils = require("../utils/jwt.utils");
 const createUser = async (req, res) => {
   try {
     const email = req.body.email;
-    const passwordToFront = req.body.password;
-    if (email === null || passwordToFront === null) {
-      return res.status(400).json("parametre manquante...");
+    const requestpassword = req.body.password;
+    if (email === null || requestpassword === null) {
+      return res.status(400).json("parametre manquant...");
     }
     const emailExist = await User.findOne({ email: email });
     if (!emailExist) {
-      let hashpassword = await bcrypt.hash(
-        passwordToFront,
+      const hashpassword = await bcrypt.hash(
+        requestpassword,
         await bcrypt.genSalt(10)
       );
       await User.create({
@@ -35,15 +35,18 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const email = req.body.email;
-    const passwordToFront = req.body.password;
+    const requestpassword = req.body.password;
 
-    if (email === null || passwordToFront === null) {
-      return res.status(400).json("parametre manquante...");
+    if (email === null || requestpassword === null) {
+      return res.status(400).json("parametre manquant...");
     }
     const emailExist = await User.findOne({ email: email });
     if (emailExist) {
-      let compare = await bcrypt.compare(passwordToFront, emailExist.password);
-      if (compare) {
+      const IsValidPassword = await bcrypt.compare(
+        requestpassword,
+        emailExist.password
+      );
+      if (IsValidPassword) {
         return res.status(200).json({
           email,
           token: JwtUtils.generateTokenUser(emailExist),

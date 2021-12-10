@@ -10,7 +10,7 @@ const ratingsSchema = mongoose.Schema({
   quality: String,
   health: String,
   security: String,
-  sportandleisure: String,
+  sportAndLeisure: String,
   transports: String,
   remarkPositive: String,
   remarkNegative: String,

@@ -15,23 +15,16 @@ const createRating = async (data) => {
   return { save };
 };
 
-const createUser = async (data) => {
-  return Axios.post(
+const createUser = async (data) =>
+  await Axios.post(
     `${process.env.NEXT_PUBLIC_API_BACKEND}/users/register`,
     data
   ).catch((error) => error.response);
-};
 
-const loginUser = async (data) => {
-  try {
-    const { data: user } = await Axios.post(
-      `${process.env.NEXT_PUBLIC_API_BACKEND}/users/login`,
-      data
-    );
-    return { user };
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+const loginUser = async (data) =>
+  await Axios.post(
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/users/login`,
+    data
+  ).catch((error) => error.response);
 
 export { getDataIleDeFrance, createRating, createUser, loginUser };

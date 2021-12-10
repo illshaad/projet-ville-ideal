@@ -16,21 +16,17 @@ import {
   Select,
 } from "../../styles/global";
 import { createRating } from "../../service/api";
-import information from "./information.json";
-import commentaire from "./commentaire.json";
+import informations from "./informations.json";
+import commentaires from "./commentaires.json";
 
 export default function AddRatingComposant({ prevStep }) {
   const { setResponse, selectCityInfoWindows } = useDataCity();
-
   const { handleSubmit, register, watch } = useForm({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCommentaire, setCurrentIndexCommentaire] = useState(0);
-
-  // a voir comment optimiser cela //
-  const remarkPositive = watch(commentaire[0].titre);
-  const remarkNegative = watch(commentaire[1].titre);
-  const quality = watch(information[8].name);
-  //
+  const remarkPositive = watch(commentaires[0].titre);
+  const remarkNegative = watch(commentaires[1].titre);
+  const quality = watch(informations[8].name);
 
   const onSubmit = async (data) => {
     try {
@@ -41,7 +37,7 @@ export default function AddRatingComposant({ prevStep }) {
         transports: data?.transports || null,
         security: data?.security || null,
         health: data?.health || null,
-        sportandleasur: data?.sportandleasur || null,
+        sportAndLeasur: data?.sportAndLeasur || null,
         culture: data?.culture || null,
         trade: data?.trade || null,
         education: data?.education || null,
@@ -52,13 +48,11 @@ export default function AddRatingComposant({ prevStep }) {
       setResponse(responseToFront.save.message);
       prevStep();
       console.log(responseToFront, " RETOUR DU BACK");
-
     } catch (error) {
       console.log(error.message);
     }
   };
 
- 
   return (
     <>
       <GreyArrowLeft onClick={() => prevStep()}> &lt; </GreyArrowLeft>
@@ -66,7 +60,6 @@ export default function AddRatingComposant({ prevStep }) {
       <P>
         Qui est dans le département : {selectCityInfoWindows?.departement.nom}
       </P>
-
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FlexContainer>
           {currentIndex > 0 ? (
@@ -78,22 +71,24 @@ export default function AddRatingComposant({ prevStep }) {
           )}
           <Card>
             <P>{[currentIndex][0] + 1} / 9</P>
-            <P color="#3197d4">{information[currentIndex]?.titre}</P>
+            <P color="#3197d4">{informations[currentIndex]?.titre}</P>
             <ContainerSelect>
               <P textAlign="justify" fontSize="15px">
-                {information[currentIndex]?.info}
+                {informations[currentIndex]?.info}
               </P>
             </ContainerSelect>
             <Select
-              name={information[currentIndex].name}
-              {...register(information[currentIndex].name)}
+              name={informations[currentIndex].name}
+              {...register(informations[currentIndex].name)}
             >
-              {information[currentIndex].value.map((index,f) => (
-                <option key={index} value={f}>{f}</option>
+              {informations[currentIndex].value.map((information, index) => (
+                <option key={`${index}-${information}`} value={information}>
+                  {information}
+                </option>
               ))}
             </Select>
           </Card>
-          {currentIndex !== information.length - 1 ? (
+          {currentIndex !== informations.length - 1 ? (
             <PinkArrowRight onClick={() => setCurrentIndex(currentIndex + 1)}>
               &gt;
             </PinkArrowRight>
@@ -117,14 +112,14 @@ export default function AddRatingComposant({ prevStep }) {
             <Card padding="0px 5px ">
               <P>{[currentIndexCommentaire][0] + 1} / 2</P>
               <P color="#3197d4">
-                {commentaire[currentIndexCommentaire].titre}
+                {commentaires[currentIndexCommentaire].titre}
               </P>
               <Textarea
                 placeholder="Noter ici votre commentaire"
-                {...register(commentaire[currentIndexCommentaire].titre)}
+                {...register(commentaires[currentIndexCommentaire].titre)}
               ></Textarea>
             </Card>
-            {currentIndexCommentaire !== commentaire.length - 1 ? (
+            {currentIndexCommentaire !== commentaires.length - 1 ? (
               <PinkArrowRight
                 onClick={() => {
                   setCurrentIndexCommentaire(currentIndexCommentaire + 1);
@@ -137,7 +132,6 @@ export default function AddRatingComposant({ prevStep }) {
             )}
           </FlexContainer>
         )}
-
         <Button
           disabled={!remarkPositive && !remarkNegative}
           cursor={!remarkPositive && !remarkNegative ? null : "pointer"}

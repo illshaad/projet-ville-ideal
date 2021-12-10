@@ -1,31 +1,31 @@
 [
   {
     "titre": "Environement",
-    "name" : "environement",
+    "name": "environement",
     "info": "Qualité de l'air. Gestion des déchets. Parcs, espaces verts.Paysage naturel. Nuisances : visuelles, sonores ou olfactives.Pollution.",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   {
     "titre": "Transports",
-    "name" : "transports",
+    "name": "transports",
     "info": "Réseau transports en commun : car, bus, métro, tramway. Stations de taxis. Gare. Pistes cyclables. Aéroport... Embouteillages!",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   {
     "titre": "Securité",
-    "name":"security",
+    "name": "security",
     "info": "Commissariat de police. Gendarmerie. Police municipale. Niveau de délinquance. Cambriolages. Trafics. Vols. Sécurité routière.",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   {
     "titre": "Santé",
-    "name" :"health",
+    "name": "health",
     "info": "Hôpital. Médecins, spécialistes. Maison de retraite. Laboratoire d'analyses. Maison médicale. Services à la personne.",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   {
     "titre": "Sport et Loisir",
-    "name" :"sportandleasur",
+    "name": "sportAndLeasur",
     "info": "Stades, gymnases. Clubs de sport.. Parcours sportifs. Piscine. Associations : pour seniors, musicales, créations artistiques..",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
@@ -43,13 +43,13 @@
   },
   {
     "titre": "Commerce",
-    "name" : "trade",
+    "name": "trade",
     "info": "Galerie marchande, supermarché, bureau de poste, commerces de proximité zone d'activité commerciale, artisans, marché...",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   {
     "titre": "Qualiter de Vie",
-    "name" : "qualityOfLife",
+    "name": "qualityOfLife",
     "info": "Globalement, le bien-être ressenti à vivre dans cette ville.C'est la note la plus importante.",
     "value": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   }
