@@ -63,4 +63,26 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, loginUser };
+const getUserProfilByToken = async (req, res) => {
+  const headerAuth = req.headers["authorization"];
+  const userId = JwtUtils.getUser(headerAuth);
+  try {
+    const requestInfo = await User.findOne(
+      { id: userId },
+      {
+        _id: 1,
+        email: 1,
+        isAdmin: 1,
+      }
+    );
+    if (requestInfo) {
+      res.status(201).json(requestInfo);
+    } else {
+      res.status(404).json("vous étes pas dans la bdd");
+    }
+  } catch (error) {
+    res.status(500);
+  }
+};
+
+module.exports = { createUser, loginUser, getUserProfilByToken };
