@@ -7,6 +7,7 @@ const generateTokenUser = (userData) => {
     {
       userId: userData._id,
       isAdmin: userData.isAdmin,
+      email: userData.email,
     },
     JWT_SECRET,
     {
