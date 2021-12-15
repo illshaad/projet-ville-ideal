@@ -8,7 +8,7 @@ export default function Authentification() {
   const message = responseAuth?.data?.message;
 
   return (
-    <CardHome width="500px" height="400px">
+    <CardHome width="500px" height="500px">
       {message === "utilisateur existe dans la bdd" ? (
         <AuthentificationComposant
           textWelcome="connecter"

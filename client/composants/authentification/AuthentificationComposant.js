@@ -14,6 +14,13 @@ import {
 } from "../../styles/global";
 
 const schema = yup.object().shape({
+  pseudo: yup
+    .string()
+    .required("Le pseudo est requis")
+    .min(
+      5,
+      "Le mots de pseudo est trop court - il doit comporter au moins 5 caractères"
+    ),
   email: yup.string().required("L'email est requis"),
   password: yup
     .string()
@@ -46,20 +53,15 @@ export default function AuthentificationComposant({ textButton, textWelcome }) {
         Bienvenue veuillez <br /> vous {textWelcome}
       </H1>
       <FormAuthentification onSubmit={handleSubmit(onSubmit)}>
+        <label>Votre Pseudo </label>
+        <Input {...register("pseudo")} placeholder="Un pseudo sympa" />
+        <ErrorMessage errors={errors} name="pseudo" as={Perror} />
         <label>E-mail</label>
-        <Input
-          {...register("email", {
-            required: "L'email est requise",
-          })}
-          placeholder="E-mail"
-        />
+        <Input {...register("email")} placeholder="E-mail" />
         <ErrorMessage errors={errors} name="email" as={Perror} />
-
         <label>Mots de passe</label>
         <Input
-          {...register("password", {
-            required: "Le mots de passe est requise",
-          })}
+          {...register("password")}
           placeholder="Mots de passe"
           type="password"
         />
