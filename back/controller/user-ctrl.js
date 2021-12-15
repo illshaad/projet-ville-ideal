@@ -1,12 +1,13 @@
 const bcrypt = require("bcrypt");
 const User = require("../modal/user");
 const JwtUtils = require("../utils/jwt.utils");
+const nodeMailUtilis = require("../utils/nodemail.utils");
 
 const createUser = async (req, res) => {
   try {
     const email = req.body.email;
     const requestpassword = req.body.password;
-    if (email == null || requestpassword == null) {
+    if (email === null || requestpassword === null) {
       return res.status(400).json("parametre manquant...");
     }
     const emailExist = await User.findOne({ email: email });
@@ -15,14 +16,19 @@ const createUser = async (req, res) => {
         requestpassword,
         await bcrypt.genSalt(10)
       );
-      const toto = await User.create({
+      const newUser = await User.create({
         email: email,
         password: hashpassword,
         isAdmin: email === "shaddlove5@gmail.com" ? true : false,
       });
 
-      // Retirer le TOTO c'était pour faire des testes pour l'intégration de nodemail//
-
+      if (newUser.email) {
+        nodeMailUtilis.sendConfirmationEmail(newUser);
+        return res.status(200).json({
+          message:
+            "L'utilisateur a été enregistré avec succès ! Merci de consulter vos emails",
+        });
+      }
       res.status(201).json({ email, message: "Vous êtes bien enregistrer" });
     } else {
       return res
