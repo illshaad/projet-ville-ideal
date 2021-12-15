@@ -5,20 +5,24 @@ const nodeMailUtilis = require("../utils/nodemail.utils");
 
 const createUser = async (req, res) => {
   try {
+    console.log(req.body);
     const email = req.body.email;
-    const requestpassword = req.body.password;
-    if (email === null || requestpassword === null) {
+    const requestPassword = req.body.password;
+    const requestPseudo = req.body.pseudo;
+
+    if (email === null || requestPassword === null || requestPseudo === null) {
       return res.status(400).json("parametre manquant...");
     }
     const emailExist = await User.findOne({ email: email });
     if (!emailExist) {
-      const hashpassword = await bcrypt.hash(
-        requestpassword,
+      const hashPassword = await bcrypt.hash(
+        requestPassword,
         await bcrypt.genSalt(10)
       );
       const newUser = await User.create({
+        pseudo: requestPseudo,
         email: email,
-        password: hashpassword,
+        password: hashPassword,
         isAdmin: email === "shaddlove5@gmail.com" ? true : false,
       });
 
@@ -44,15 +48,15 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const email = req.body.email;
-    const requestpassword = req.body.password;
+    const requestPassword = req.body.password;
 
-    if (email == null || requestpassword == null) {
+    if (email == null || requestPassword == null) {
       return res.status(400).json("parametre manquant...");
     }
     const emailExist = await User.findOne({ email: email });
     if (emailExist) {
       const IsValidPassword = await bcrypt.compare(
-        requestpassword,
+        requestPassword,
         emailExist.password
       );
       if (IsValidPassword) {
