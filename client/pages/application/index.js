@@ -11,6 +11,7 @@ import Snackbar from "../../composants/snackbar/Snackbar";
 
 export default function Home({ dataIleDeFrance }) {
   const { response, setResponse } = useDataCity();
+  console.log(response);
   const [step, setStep] = useState(0);
 
   // Si il y'a la donnée du back il faut afficher dans le composant ViewAllRating

@@ -33,7 +33,6 @@ const schema = yup.object().shape({
 
 export default function AuthentificationComposant({ textButton, textWelcome }) {
   const { setResponseAuth } = useDataCity();
-
   const {
     register,
     handleSubmit,

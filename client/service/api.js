@@ -7,13 +7,8 @@ const getDataIleDeFrance = async () => {
   return { dataAll };
 };
 
-const createRating = async (data) => {
-  const { data: save } = await Axios.post(
-    `${process.env.NEXT_PUBLIC_API_BACKEND}/rating`,
-    data
-  );
-  return { save };
-};
+const createRating = async (data) =>
+  await Axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/rating`, data);
 
 const createUser = async (data) =>
   await Axios.post(
