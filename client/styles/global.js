@@ -51,17 +51,18 @@ export const FlexContainer = styled.div`
   flex-direction: ${({ flexDirection }) => flexDirection || null};
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 20px;
+  margin: ${({ margin }) => margin || "20px 20px"};
   gap: 10px;
 `;
 
 export const Card = styled.div`
   padding: ${({ padding }) => padding || "5px 5px"};
-  width: 330px;
-  height: 220px;
+  width: ${({ width }) => width || "330px"};
+  height: ${({ height }) => height || "220px"};
   background: #fff;
   border-radius: 4px;
   box-shadow: 0px 0px 3px #3197d4;
+  overflow-y: ${({ overflow }) => overflow || null};
 `;
 
 export const Perror = styled.span`
@@ -130,6 +131,7 @@ export const CardHome = styled.div`
   border-radius: 10px;
   box-shadow: 1px 1px 10px 0px #000000;
   overflow: hidden;
+  overflow-y: scroll;
 `;
 
 export const Menu = styled.div`
@@ -187,4 +189,12 @@ export const FormAuthentification = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const ContainerInformation = styled.p`
+  background: cornflowerblue;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 300px;
 `;
