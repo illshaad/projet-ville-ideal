@@ -51,7 +51,7 @@ export const FlexContainer = styled.div`
   flex-direction: ${({ flexDirection }) => flexDirection || null};
   justify-content: space-around;
   align-items: center;
-  margin: ${({ margin }) => margin || "20px 20px"};
+  margin: ${({ margin }) => margin || "20px"};
   gap: 10px;
 `;
 

@@ -15,15 +15,18 @@ export default function PopoverComposant() {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+      <Button
+        aria-describedby={open ? "simple-popover" : undefined}
+        variant="contained"
+        onClick={handleClick}
+      >
         Les Avis
       </Button>
       <Popover
-        id={id}
+        id={open ? "simple-popover" : undefined}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
