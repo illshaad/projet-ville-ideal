@@ -20,7 +20,7 @@ const createRating = async (req, res) => {
 
     const totalRating = formatAverageNumber(dataToFront);
 
-    const saveRating = await new Rating({
+    const saveRating = new Rating({
       ...req.body,
     });
     saveRating.save();
