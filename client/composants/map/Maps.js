@@ -39,7 +39,7 @@ export default function MapGoogle({ dataIleDeFrance }) {
 
   return (
     <PositionMaps>
-      <LoadScript googleMapsApiKey="AIzaSyC0iQDHGXaDAQ_Os9Boc6vxGrPZHcYQHzo">
+      <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAP_GOOGLE}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={dinamiqueMarker ? 15 : 11}

@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import * as yup from "yup";
 import { createUser } from "../../service/api";
 import { useDataCity } from "../../context/context";
+import Google from "./GoogleAuth";
 import {
   H1,
   FormAuthentification,
@@ -69,6 +70,7 @@ export default function AuthentificationComposant({ textButton, textWelcome }) {
         <Button cursor="pointer " type="submit">
           {textButton}
         </Button>
+        <Google />
       </FormAuthentification>
     </>
   );
