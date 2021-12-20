@@ -6,7 +6,6 @@ import Snackbar from "../../composants/snackbar/Snackbar";
 
 export default function Authentification() {
   const { response } = useDataCity();
-  console.log(response);
   return (
     <>
       <CardHome width="500px" height="500px">

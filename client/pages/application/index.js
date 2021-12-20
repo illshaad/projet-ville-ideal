@@ -10,7 +10,7 @@ import AddRating from "../../composants/avis/AddRating";
 import Snackbar from "../../composants/snackbar/Snackbar";
 
 export default function Home({ dataIleDeFrance }) {
-  const { response, setResponse } = useDataCity();
+  const { response } = useDataCity();
 
   const [step, setStep] = useState(0);
 
