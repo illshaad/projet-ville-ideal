@@ -5,7 +5,8 @@ import { useDataCity } from "../../context/context";
 import Snackbar from "../../composants/snackbar/Snackbar";
 
 export default function Authentification() {
-  const { responseAuth, setResponseAuth } = useDataCity();
+  const { response } = useDataCity();
+  console.log(response);
   return (
     <>
       <CardHome width="500px" height="500px">
@@ -14,12 +15,7 @@ export default function Authentification() {
           textButton="Inscription"
         />
       </CardHome>
-      {responseAuth && (
-        <Snackbar
-          responseAuth={responseAuth}
-          setResponseAuth={setResponseAuth}
-        />
-      )}
+      {response && <Snackbar response={response} />}
     </>
   );
 }

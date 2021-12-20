@@ -47,7 +47,6 @@ export default function AddRatingComposant({ prevStep }) {
       });
       setResponse(responseToFront);
       prevStep();
-      console.log(responseToFront, " RETOUR DU BACK");
     } catch (error) {
       console.log(error.message);
     }

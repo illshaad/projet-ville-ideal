@@ -40,7 +40,7 @@ export default function Home({ dataIleDeFrance }) {
           <Maps dataIleDeFrance={dataIleDeFrance} />
         </FlexContainerHome>
       </CardHome>
-      {response && <Snackbar setResponse={setResponse} response={response} />}
+      {response && <Snackbar response={response} />}
     </>
   );
 }
