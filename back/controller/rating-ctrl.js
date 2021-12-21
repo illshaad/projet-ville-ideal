@@ -1,6 +1,5 @@
 const Rating = require("../modal/rating");
 
-
 const createRating = async (req, res) => {
   try {
     const dataToFront = req.body;
@@ -38,4 +37,14 @@ const createRating = async (req, res) => {
   }
 };
 
-module.exports = { createRating };
+const getRatings = async (req, res) => {
+  try {
+    const ratings = await Rating.find({});
+    res.status(200).json(ratings);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send("oups erreur");
+  }
+};
+
+module.exports = { createRating, getRatings };
