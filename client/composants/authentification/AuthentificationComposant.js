@@ -32,7 +32,7 @@ const schema = yup.object().shape({
 });
 
 export default function AuthentificationComposant({ textButton, textWelcome }) {
-  const { setResponseAuth } = useDataCity();
+  const { setResponse } = useDataCity();
 
   const {
     register,
@@ -44,7 +44,7 @@ export default function AuthentificationComposant({ textButton, textWelcome }) {
 
   const onSubmit = async (data) => {
     const response = await createUser(data);
-    setResponseAuth(response);
+    setResponse(response);
   };
 
   return (

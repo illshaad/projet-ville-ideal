@@ -45,9 +45,8 @@ export default function AddRatingComposant({ prevStep }) {
         remarkNegative: remarkNegative || null,
         qualityOfLife: data?.qualityOfLife || null,
       });
-      setResponse(responseToFront.save.message);
+      setResponse(responseToFront);
       prevStep();
-      console.log(responseToFront, " RETOUR DU BACK");
     } catch (error) {
       console.log(error.message);
     }

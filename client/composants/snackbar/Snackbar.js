@@ -1,30 +1,34 @@
-import React , { useState }from "react";
-import Snackbar from "@material-ui/core/Snackbar";
+import React, { useState, useEffect } from "react";
+import SnackbarMUI from "@material-ui/core/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
-
-export default function SnackbarComposant({ response, setResponse }) {
+export default function Snackbar({ message, status }) {
   const [open, setOpen] = useState(true);
-
 
   const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
     }
-    setResponse();
     setOpen(false);
   };
 
+  const handleMessageResponse = (message) => {
+    if (message) return message;
+  };
+
+  useEffect(() => {
+    if (message && !open) setOpen(true);
+  }, [message]);
+
   return (
-      <Snackbar
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left"
-        }}
-        open={open}
-        autoHideDuration={6000}
+    <SnackbarMUI open={open} autoHideDuration={6000} onClose={handleClose}>
+      <MuiAlert
         onClose={handleClose}
-        message={response}
-      />
+        severity={status === 200 || status === 201 ? "success" : "error"}
+        sx={{ width: "100%" }}
+      >
+        {handleMessageResponse(message)}
+      </MuiAlert>
+    </SnackbarMUI>
   );
 }
-

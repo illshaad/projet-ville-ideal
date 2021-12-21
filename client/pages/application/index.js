@@ -10,7 +10,10 @@ import AddRating from "../../composants/avis/AddRating";
 import Snackbar from "../../composants/snackbar/Snackbar";
 
 export default function Home({ dataIleDeFrance }) {
-  const { response, setResponse } = useDataCity();
+  const { response } = useDataCity();
+  const message = response?.data?.message;
+  const status = response.status;
+
   const [step, setStep] = useState(0);
 
   // Si il y'a la donnée du back il faut afficher dans le composant ViewAllRating
@@ -39,7 +42,7 @@ export default function Home({ dataIleDeFrance }) {
           <Maps dataIleDeFrance={dataIleDeFrance} />
         </FlexContainerHome>
       </CardHome>
-      {response && <Snackbar setResponse={setResponse} response={response} />}
+      {response && <Snackbar message={message} status={status} />}
     </>
   );
 }
