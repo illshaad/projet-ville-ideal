@@ -7,11 +7,11 @@ import Snackbar from "../../composants/snackbar/Snackbar";
 export default function Authentification() {
   const { response } = useDataCity();
   const message = response?.data?.message;
-  const status = response.status;
+  const status = response?.status;
 
   return (
     <>
-      <CardHome width="500px" height="500px">
+      <CardHome width="500px" height="620px">
         <AuthentificationComposant
           textWelcome="inscrire"
           textButton="Inscription"

@@ -12,7 +12,7 @@ import Snackbar from "../../composants/snackbar/Snackbar";
 export default function Home({ dataIleDeFrance }) {
   const { response } = useDataCity();
   const message = response?.data?.message;
-  const status = response.status;
+  const status = response?.status;
 
   const [step, setStep] = useState(0);
 

@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { createUser } from "../../service/api";
 import { useDataCity } from "../../context/context";
 import Google from "./GoogleAuth";
+import Facebook from "./FacebookAuth";
 import {
   H1,
   FormAuthentification,
@@ -71,6 +72,7 @@ export default function AuthentificationComposant({ textButton, textWelcome }) {
           {textButton}
         </Button>
         <Google />
+        <Facebook />
       </FormAuthentification>
     </>
   );
