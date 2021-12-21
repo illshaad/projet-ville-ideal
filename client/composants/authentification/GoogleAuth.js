@@ -11,11 +11,13 @@ export default function GoogleAuth() {
 
   return (
     <GoogleLogin
+      className="btnSocial"
       clientId={process.env.NEXT_PUBLIC_AUTH_GOOGLE}
-      buttonText="Connection"
+      buttonText="Connection Google"
       onSuccess={responseGoogle}
       onFailure={responseGoogle}
       cookiePolicy={"single_host_origin"}
+      icon={false}
       //   isSignedIn={true}
     />
   );

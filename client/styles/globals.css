@@ -17,6 +17,25 @@ a {
   box-sizing: border-box;
 }
 
+.btnSocial {
+  font-family: Roboto, sans-serif !important;
+  width: 165px;
+  height: 35px;
+  border-radius: 4px;
+  background: #3197d4 !important;
+  color: white !important;
+  border: 0px transparent;
+  text-align: center;
+  margin: 5px;
+  cursor: pointer;
+  display: null;
+  font-size: 14px;
+}
+
+.btnSocial:hover {
+  color: black !important;
+}
+
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -28,6 +47,6 @@ a {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ed3b8e;
+  background: #3197d4;
   border-radius: 27px;
 }

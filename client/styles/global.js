@@ -18,8 +18,8 @@ export const Button = styled.button`
   font-size: 15px;
   line-height: 1rem;
   border-radius: 4px;
-  width: 140px;
-  height: 40px;
+  width: 165px;
+  height: 35px;
   color: #f9f9f9;
   align-items: center;
   display: flex;
@@ -27,6 +27,9 @@ export const Button = styled.button`
   margin: 5px auto;
   cursor: ${({ cursor }) => cursor || null};
   border: none;
+  :hover {
+    color: black;
+  }
 `;
 
 export const Input = styled.input`
@@ -131,7 +134,7 @@ export const CardHome = styled.div`
   border-radius: 10px;
   box-shadow: 1px 1px 10px 0px #000000;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: ${({ overflow }) => overflow || null};
 `;
 
 export const Menu = styled.div`
