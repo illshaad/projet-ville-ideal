@@ -1,11 +1,11 @@
-import * as React from "react";
-import Popover from "@mui/material/Popover";
+import React, { useState } from "react";
+import PopoverMui from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { FlexContainer, Card, ContainerInformation } from "../../styles/global";
 
-export default function PopoverComposant() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function Popover() {
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -19,14 +19,14 @@ export default function PopoverComposant() {
   return (
     <div>
       <Button
-        aria-describedby={open ? "simple-popover" : undefined}
+        aria-describedby={open && "simple-popover"}
         variant="contained"
         onClick={handleClick}
       >
         Les Avis
       </Button>
-      <Popover
-        id={open ? "simple-popover" : undefined}
+      <PopoverMui
+        id={open && "simple-popover"}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
@@ -151,7 +151,7 @@ export default function PopoverComposant() {
         <Button size="small" color="error">
           Refuser
         </Button>
-      </Popover>
+      </PopoverMui>
     </div>
   );
 }
