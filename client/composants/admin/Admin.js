@@ -9,7 +9,7 @@ export default function Admin() {
       <FlexContainer flexDirection="column" margin="0px">
         <Card width="1000px" height="70px">
           <FlexContainer margin="0px">
-            <P>Speudo</P>
+            <P>Pseudo</P>
             <P>Email</P>
             <P>Status</P>
             <P>Ville</P>

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export default function AuthSocial() {
   const router = useRouter();
 
-  const response = (response) => {
+  const response = (response) => {  
     if (response) router.push("/application");
   };
 
@@ -29,6 +29,7 @@ export default function AuthSocial() {
         callback={response}
         textButton="Connection Facebook"
       />
+      
     </>
   );
 }

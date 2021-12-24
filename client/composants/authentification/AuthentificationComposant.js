@@ -54,9 +54,21 @@ export default function AuthentificationComposant({ textButton, textWelcome }) {
         Bienvenue veuillez <br /> vous {textWelcome}
       </H1>
       <FormAuthentification onSubmit={handleSubmit(onSubmit)}>
-        <label>Votre Pseudo </label>
+      {textButton === 'Connection' && textWelcome === 'Connecter' ? <><label>E-mail</label>
+        <Input {...register("email")} placeholder="E-mail" />
+        <ErrorMessage errors={errors} name="email" as={Perror} />
+        <label>Mots de passe</label>
+        <Input
+          {...register("password")}
+          placeholder="Mots de passe"
+          type="password"
+        />
+        <ErrorMessage errors={errors} name="password" as={Perror} />  </>  : 
+      <>
+      <label>Votre Pseudo </label>
         <Input {...register("pseudo")} placeholder="Un pseudo sympa" />
         <ErrorMessage errors={errors} name="pseudo" as={Perror} />
+
         <label>E-mail</label>
         <Input {...register("email")} placeholder="E-mail" />
         <ErrorMessage errors={errors} name="email" as={Perror} />
@@ -66,11 +78,13 @@ export default function AuthentificationComposant({ textButton, textWelcome }) {
           placeholder="Mots de passe"
           type="password"
         />
-        <ErrorMessage errors={errors} name="password" as={Perror} />
+        <ErrorMessage errors={errors} name="password" as={Perror} /> 
+        </>
+        }
         <Button cursor="pointer " type="submit">
           {textButton}
         </Button>
-        <AuthSocial />
+        {textButton === 'Connection' && textWelcome ==='Connecter' ? null :   <AuthSocial /> }
       </FormAuthentification>
     </>
   );

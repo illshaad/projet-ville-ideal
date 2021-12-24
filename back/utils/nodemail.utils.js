@@ -21,7 +21,7 @@ const sendConfirmationEmail = (newUser) => {
       html: `<h1>Confirmation de l'email</h1>
             <h2>Bonjour ${pseudo}</h2>
             <p>Merci de vous être abonné. Veuillez confirmer votre email en cliquant sur le lien suivant</p>
-            <a href=http://localhost:3000/> Cliquez ici</a>
+            <a href=http://localhost:3000/authentification?email=${email}> Cliquez ici</a>
             </div>`,
     })
     .catch((err) => console.log(err));
