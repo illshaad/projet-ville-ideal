@@ -8,17 +8,17 @@ const getDataIleDeFrance = async () => {
 };
 
 const createRating = async (data) =>
-  await Axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/rating`, data);
+  await Axios.post(`${process.env.NEXT_PUBLIC_API_BACKEND}/add-rating`, data);
 
 const createUser = async (data) =>
   await Axios.post(
-    `${process.env.NEXT_PUBLIC_API_BACKEND}/users/register`,
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/register`,
     data
   ).catch((error) => error.response);
 
 const loginUser = async (data) =>
   await Axios.post(
-    `${process.env.NEXT_PUBLIC_API_BACKEND}/users/login`,
+    `${process.env.NEXT_PUBLIC_API_BACKEND}/login`,
     data
   ).catch((error) => error.response);
 

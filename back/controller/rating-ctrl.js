@@ -1,6 +1,7 @@
 const Rating = require("../modal/rating");
 
 const createRating = async (req, res) => {
+  console.log(req.body);
   try {
     const dataToFront = req.body;
 
