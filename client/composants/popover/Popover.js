@@ -23,7 +23,7 @@ export default function Popover ({ size }) {
         onClick={handleClick}
         size={size}
       >
-        Les Avis
+        les avis
       </Button>
       <PopoverMui
         id={open && 'simple-popover'}
