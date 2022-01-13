@@ -1,20 +1,20 @@
 /* eslint-disable react/no-array-index-key */
-import React from "react";
+import React from 'react'
 import {
   GoogleMap,
   LoadScript,
   Marker,
-  MarkerClusterer,
-} from "@react-google-maps/api";
-import { PositionMaps, styledMap } from "../../styles/MapGoogle";
-import { useDataCity } from "../../context/context";
+  MarkerClusterer
+} from '@react-google-maps/api'
+import { PositionMaps, styledMap } from '../../styles/MapGoogle'
+import { useDataCity } from '../../context/context'
 
 const options = {
   styles: styledMap,
-  strokeColor: "#c22420",
+  strokeColor: '#c22420',
   strokeOpacity: 1.2,
   strokeWeight: 5,
-  fillColor: "#c22420",
+  fillColor: '#c22420',
   fillOpacity: 0.5,
   clickable: true,
   editable: false,
@@ -26,16 +26,16 @@ const options = {
   scaleControl: false,
   streetViewControl: false,
   rotateControl: false,
-  fullscreenControl: false,
-};
+  fullscreenControl: false
+}
 
-export default function MapGoogle({ dataIleDeFrance }) {
-  const { dinamiqueMarker, SetselectCityInfoWindows } = useDataCity();
+export default function MapGoogle ({ dataIleDeFrance }) {
+  const { dinamiqueMarker, SetselectCityInfoWindows } = useDataCity()
 
   const mapStyles = {
-    width: "auto",
-    height: "720px",
-  };
+    width: 'auto',
+    height: '720px'
+  }
 
   return (
     <PositionMaps>
@@ -46,10 +46,10 @@ export default function MapGoogle({ dataIleDeFrance }) {
           center={
             (dinamiqueMarker && {
               lat: dinamiqueMarker?.lat,
-              lng: dinamiqueMarker?.long,
+              lng: dinamiqueMarker?.long
             }) || {
               lat: 48.866667,
-              lng: 2.333333,
+              lng: 2.333333
             }
           }
           options={options}
@@ -60,8 +60,8 @@ export default function MapGoogle({ dataIleDeFrance }) {
               dataIleDeFrance.dataAll.map((item, index) => {
                 const lagLng = {
                   lat: item.centre.coordinates[1],
-                  lng: item.centre.coordinates[0],
-                };
+                  lng: item.centre.coordinates[0]
+                }
                 return (
                   <Marker
                     index={index}
@@ -69,12 +69,11 @@ export default function MapGoogle({ dataIleDeFrance }) {
                     clusterer={clusterer}
                     onClick={() => SetselectCityInfoWindows(item)}
                   />
-                );
-              })
-            }
+                )
+              })}
           </MarkerClusterer>
         </GoogleMap>
       </LoadScript>
     </PositionMaps>
-  );
+  )
 }

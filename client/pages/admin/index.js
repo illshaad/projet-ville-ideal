@@ -1,6 +1,6 @@
-import React from "react";
-import Admin from "../../composants/admin/Admin";
+import React from 'react'
+import Admin from '../../composants/admin/Admin'
 
-export default function AdminPage() {
-  return <Admin />;
+export default function AdminPage () {
+  return <Admin />
 }
