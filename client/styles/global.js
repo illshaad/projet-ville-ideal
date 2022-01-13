@@ -170,14 +170,13 @@ export const RatingGlobal = styled.div`
 `
 
 export const CardRating = styled.div`
-  background: white;
+  background: #F1F5F9;
   height: 100px;
-  border-top : 2px solid grey;
-  border-bottom : 2px solid grey;
   margin-top : 30px;
   margin-bottom : 20px;
   padding-top : 10px;
-  gap : 10px
+  gap : 10px;
+  border-radius : 10px;
 `
 
 export const FormAuthentification = styled.form`
@@ -199,5 +198,6 @@ export const ContainerInformation = styled.p`
 export const FlexElementCard = styled.div`
  display : flex;
  justify-content: center;
- align-item : center
+ align-item : center;
+ gap:5px;
 `
