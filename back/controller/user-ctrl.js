@@ -2,10 +2,11 @@ const bcrypt = require("bcrypt");
 const User = require("../modal/user");
 const JwtUtils = require("../utils/jwt.utils");
 const nodeMailUtilis = require("../utils/nodemail.utils");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const createUser = async (req, res) => {
   try {
-    console.log(req.body);
     const email = req.body.email;
     const requestPassword = req.body.password;
     const requestPseudo = req.body.pseudo;
@@ -76,26 +77,19 @@ const loginUser = async (req, res) => {
   }
 };
 
-const getUserProfilByToken = async (req, res) => {
-  const headerAuth = req.headers["authorization"];
-  const userId = JwtUtils.getUser(headerAuth);
-  try {
-    const requestInfo = await User.findOne(
-      { id: userId },
-      {
-        _id: 1,
-        email: 1,
-        isAdmin: 1,
-      }
-    );
-    if (requestInfo) {
-      res.status(201).json(requestInfo);
-    } else {
-      res.status(404).json("vous étes pas dans la bdd");
-    }
-  } catch (error) {
-    res.status(500);
-  }
+const middleWareAuth = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) res.status(401);
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.status(401);
+    req.user = user;
+    next();
+  });
 };
 
-module.exports = { createUser, loginUser, getUserProfilByToken };
+module.exports = {
+  createUser,
+  loginUser,
+  middleWareAuth,
+};
