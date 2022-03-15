@@ -1,90 +1,91 @@
-import React, { useState } from 'react'
-import PopoverMui from '@mui/material/Popover'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import { FlexContainer, Card, ContainerInformation } from '../../styles/global'
+import React, { useState } from "react";
+import PopoverMui from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { FlexContainer, Card, ContainerInformation } from "../../styles/global";
 
-export default function Popover ({ size }) {
-  const [anchorEl, setAnchorEl] = useState(null)
+export default function Popover({ size }) {
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (e) => {
-    setAnchorEl(e.currentTarget)
-  }
+    setAnchorEl(e.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
-  const open = Boolean(anchorEl)
+  const open = Boolean(anchorEl);
 
   return (
     <div>
       <Button
-        aria-describedby={open && 'simple-popover'}
+        aria-describedby={open && "simple-popover"}
         onClick={handleClick}
+        color="inherit"
         size={size}
       >
         les avis
       </Button>
       <PopoverMui
-        id={open && 'simple-popover'}
+        id={open && "simple-popover"}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'center'
+          vertical: "center",
         }}
       >
         <FlexContainer>
           <div>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Environement: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Transports: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Securité: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Santé: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Sport et Loisir: 5 /10
               </Typography>
             </ContainerInformation>
           </div>
           <div>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Culture: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Enseignement: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Commerce: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Qualité de Vie: 5 /10
               </Typography>
             </ContainerInformation>
             <ContainerInformation>
-              <Typography sx={{ p: 1 }} align='center'>
+              <Typography sx={{ p: 1 }} align="center">
                 Note Global: 4 /10
               </Typography>
             </ContainerInformation>
@@ -92,12 +93,12 @@ export default function Popover ({ size }) {
         </FlexContainer>
 
         <FlexContainer>
-          <Card overflow='scroll'>
+          <Card overflow="scroll">
             <Typography
               style={{ fontWeight: 600 }}
               sx={{ p: 1 }}
-              align='center'
-              variant='h6'
+              align="center"
+              variant="h6"
             >
               Avis positifs
             </Typography>
@@ -118,12 +119,12 @@ export default function Popover ({ size }) {
               voluptas nulla pariatur?
             </Typography>
           </Card>
-          <Card overflow='scroll'>
+          <Card overflow="scroll">
             <Typography
               style={{ fontWeight: 600 }}
               sx={{ p: 1 }}
-              align='center'
-              variant='h6'
+              align="center"
+              variant="h6"
             >
               Avis negatif
             </Typography>
@@ -145,13 +146,13 @@ export default function Popover ({ size }) {
             </Typography>
           </Card>
         </FlexContainer>
-        <Button size='small' color='success'>
+        <Button size="small" color="success">
           Accepter
         </Button>
-        <Button size='small' color='error'>
+        <Button size="small" color="error">
           Refuser
         </Button>
       </PopoverMui>
     </div>
-  )
+  );
 }

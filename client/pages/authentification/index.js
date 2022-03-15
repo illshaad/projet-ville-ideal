@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AuthentificationComposant from "../../composants/authentification/AuthentificationComposant";
-import { CardHome } from "../../styles/global";
+import { Card } from "@nextui-org/react";
 import { useDataCity } from "../../context/context";
 import Snackbar from "../../composants/snackbar/Snackbar";
 import { createUser, loginUser, redirectionJwt } from "../../service/api";
@@ -22,7 +22,6 @@ export default function Authentification() {
   }, []);
 
   const onSubmit = async (data) => {
-    console.log(data);
     if (!url) {
       const response = await createUser(data);
       setResponse(response);
@@ -34,7 +33,18 @@ export default function Authentification() {
 
   return (
     <>
-      <CardHome width="500px" height="620px">
+      <Card
+        bordered
+        borderWeight={"bold"}
+        shadow={false}
+        hoverable
+        css={{
+          borderColor: " #C17CEF",
+          margin: "10% auto",
+          width: "500px",
+          height: "500px",
+        }}
+      >
         {url ? (
           <AuthentificationComposant
             textWelcome="Connecter"
@@ -48,7 +58,7 @@ export default function Authentification() {
             onSubmit={onSubmit}
           />
         )}
-      </CardHome>
+      </Card>
       {response && <Snackbar message={message} status={status} />}
     </>
   );
