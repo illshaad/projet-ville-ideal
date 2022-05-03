@@ -1,4 +1,4 @@
-# projet-ville-ideal
+# projet-ville-ideal est en cours de progression...
 
 #BACKEND
 ce rendre sur le dossier Back
