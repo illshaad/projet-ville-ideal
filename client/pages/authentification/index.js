@@ -16,7 +16,6 @@ export default function Authentification() {
   useEffect(() => {
     setUrl(window.location.href.split("email=")[1]);
     if (response?.token) {
-      //JE NE CEST PAS QUOI FAIRE !!!! JE RECUPERE LE JWT ET ENSUIT JE REDIRECTION SUR LAPPLICATION ?????
       const responseToken = redirectionJwt(response.token);
     }
   }, []);
